@@ -2,1333 +2,1487 @@
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AS Primavera Constanța — Academie de Fotbal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a1810">
+<meta name="description" content="AS Primavera Constanța — academie de fotbal pentru copii născuți între 2014–2020. Antrenor cu 16 ani experiență, primele 2 antrenamente gratuite.">
+<title>AS Primavera Constanța · Academie de Fotbal</title>
+<link rel="icon" href="logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green: #2d8a4e;
-    --green-dark: #1e6337;
-    --green-light: #3aad63;
-    --yellow: #f0c93a;
-    --yellow-dark: #d4a800;
-    --white: #ffffff;
-    --dark: #0d1f12;
-    --dark-2: #122a18;
-    --dark-3: #1a3a22;
-  }
+/* ═══════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — cohesive palette with natural transitions
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  /* Brand greens — cooler, more modern */
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --green-800: #166534;
+  --green-900: #14532d;
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  /* Depth layers — subtle gradient between sections */
+  --bg-0: #0a1810;
+  --bg-1: #0f1f15;
+  --bg-2: #12271a;
+  --bg-3: #16301f;
 
-  html {
-    scroll-behavior: smooth;
-  }
+  /* Accent — warm amber (not neon yellow) */
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
 
-  body {
-    font-family: 'Outfit', sans-serif;
-    background: var(--dark);
-    color: var(--white);
-    overflow-x: hidden;
-    line-height: 1.5;
-  }
+  /* Neutrals */
+  --cream: #f5f5f4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
 
-  h1, h2, h3, h4, h5 {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 0.04em;
-    font-weight: 400;
-  }
+  /* Surfaces (for glassmorphism) */
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(34, 197, 94, 0.08);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(34, 197, 94, 0.4);
 
-  img {
-    max-width: 100%;
-    display: block;
-  }
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.5);
+  --glow-green: 0 0 40px rgba(34, 197, 94, 0.35);
+  --glow-amber: 0 0 32px rgba(251, 191, 36, 0.4);
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ═══ NAVBAR ═══ */
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 72px;
-    background: rgba(13, 31, 18, 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(45, 138, 78, 0.2);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 48px;
-    transition: box-shadow 0.3s;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-0);
+  color: var(--cream);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  .nav-logo img {
-    height: 48px;
-    width: auto;
-    filter: drop-shadow(0 0 10px rgba(240, 201, 58, 0.3));
-  }
+h1, h2, h3, h4, h5 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
 
-  .nav-logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-  }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 
-  .nav-logo-text strong {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.35rem;
-    color: var(--yellow);
-    letter-spacing: 0.08em;
-    font-weight: 400;
-  }
+::selection { background: var(--green-600); color: var(--cream); }
 
-  .nav-logo-text small {
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.55);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-top: 3px;
-  }
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-0); }
+::-webkit-scrollbar-thumb { background: var(--green-800); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green-700); }
 
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 36px;
-    align-items: center;
-  }
+/* ═══════════════════════════════════════════════════════════════════
+   NAVBAR — mobile-first
+   ═══════════════════════════════════════════════════════════════════ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 64px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 24, 16, 0.72);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s, background 0.3s;
+}
 
-  .nav-links a {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.75);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    position: relative;
-    transition: color 0.25s;
-  }
+.navbar.scrolled {
+  background: rgba(10, 24, 16, 0.92);
+  box-shadow: var(--shadow-sm);
+}
 
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 0;
-    height: 2px;
-    background: var(--yellow);
-    transition: width 0.3s;
-  }
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  .nav-links a:hover {
-    color: var(--white);
-  }
+.nav-brand img {
+  height: 38px;
+  width: auto;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.25));
+}
 
-  .nav-links a:hover::after {
-    width: 100%;
-  }
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
 
-  .nav-cta {
-    background: var(--yellow);
-    color: var(--dark);
-    padding: 11px 26px;
-    border-radius: 4px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
-  }
+.nav-brand-text strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--amber-400);
+  letter-spacing: 0.06em;
+  font-weight: 400;
+}
 
-  .nav-cta:hover {
-    background: var(--yellow-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(240, 201, 58, 0.4);
-  }
+.nav-brand-text small {
+  font-size: 0.6rem;
+  color: var(--stone-400);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-weight: 600;
+}
 
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 6px;
-  }
+.nav-links {
+  display: none;
+  list-style: none;
+  gap: 32px;
+  align-items: center;
+}
 
-  .hamburger span {
-    width: 26px;
-    height: 2px;
-    background: var(--white);
-    border-radius: 2px;
-    transition: transform 0.3s, opacity 0.3s;
-  }
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--stone-300);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.25s;
+}
 
-  .mobile-menu {
-    position: fixed;
-    inset: 72px 0 0 0;
-    background: rgba(13, 31, 18, 0.98);
-    backdrop-filter: blur(24px);
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-    transform: translateX(100%);
-    transition: transform 0.4s ease;
-  }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--amber-400);
+  transition: width 0.3s;
+}
 
-  .mobile-menu.open {
-    transform: translateX(0);
-  }
+.nav-links a:hover { color: var(--cream); }
+.nav-links a:hover::after { width: 100%; }
 
-  .mobile-menu a {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.4rem;
-    color: var(--white);
-    letter-spacing: 0.06em;
-    transition: color 0.25s;
-  }
+.nav-cta {
+  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  color: var(--bg-0) !important;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+}
 
-  .mobile-menu a:hover {
-    color: var(--yellow);
-  }
+.nav-cta::after { display: none; }
+.nav-cta:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-green);
+}
 
-  .mobile-menu a.mob-cta {
-    background: var(--yellow);
-    color: var(--dark);
-    padding: 12px 40px;
-    border-radius: 4px;
-    font-size: 1.6rem;
-  }
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  z-index: 101;
+}
 
-  /* ═══ HERO ═══ */
-  .hero {
-    min-height: 100vh;
-    padding-top: 72px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    background: radial-gradient(ellipse at 30% 50%, rgba(45, 138, 78, 0.15) 0%, transparent 60%), var(--dark);
-  }
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--cream);
+  border-radius: 2px;
+  transition: transform 0.35s, opacity 0.3s;
+}
 
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(45, 138, 78, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(45, 138, 78, 0.1) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridFloat 20s ease-in-out infinite;
-    pointer-events: none;
-  }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  @keyframes gridFloat {
-    0%, 100% { transform: translate(0, 0); }
-    33% { transform: translate(8px, -12px); }
-    66% { transform: translate(-6px, 10px); }
-  }
+/* Mobile drawer */
+.mobile-drawer {
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: rgba(10, 24, 16, 0.98);
+  backdrop-filter: blur(24px);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  .hero-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 80px 48px;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 60px;
-    align-items: center;
-  }
+.mobile-drawer.open { transform: translateX(0); }
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(45, 138, 78, 0.15);
-    border: 1px solid rgba(45, 138, 78, 0.4);
-    padding: 8px 18px;
-    border-radius: 100px;
-    margin-bottom: 28px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--green-light);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
+.mobile-drawer a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  transition: color 0.25s, transform 0.25s;
+}
 
-  .pulse-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--green-light);
-    animation: pulseDot 2s infinite;
-  }
+.mobile-drawer a:hover,
+.mobile-drawer a:active {
+  color: var(--amber-400);
+  transform: scale(1.05);
+}
 
-  @keyframes pulseDot {
-    0% { box-shadow: 0 0 0 0 rgba(58, 173, 99, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(58, 173, 99, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(58, 173, 99, 0); }
-  }
+.mobile-drawer a.drawer-cta {
+  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  color: var(--bg-0);
+  padding: 14px 40px;
+  border-radius: 12px;
+  font-size: 1.4rem;
+  margin-top: 12px;
+  box-shadow: var(--glow-green);
+}
 
-  .hero-title {
-    font-size: clamp(3.5rem, 7.5vw, 6.8rem);
-    line-height: 0.9;
-    margin-bottom: 24px;
-  }
+/* ═══════════════════════════════════════════════════════════════════
+   HERO — cinematic bg with team photo
+   ═══════════════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-top: 64px;
+}
 
-  .hero-title .accent {
-    color: var(--yellow);
-  }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
 
-  .hero-subtitle {
-    font-size: clamp(1rem, 1.4vw, 1.2rem);
-    color: rgba(255, 255, 255, 0.62);
-    max-width: 500px;
-    margin-bottom: 40px;
-    line-height: 1.7;
-  }
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  filter: saturate(1.1) contrast(1.05);
+}
 
-  .hero-ctas {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 56px;
-  }
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top, transparent 0%, rgba(10, 24, 16, 0.4) 60%, var(--bg-0) 100%),
+    linear-gradient(180deg, rgba(10, 24, 16, 0.3) 0%, rgba(10, 24, 16, 0.7) 55%, var(--bg-0) 100%);
+}
 
-  .btn-primary {
-    background: var(--yellow);
-    color: var(--dark);
-    padding: 16px 34px;
-    border: none;
-    border-radius: 4px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.15rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
-  }
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(rgba(34, 197, 94, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: gridDrift 24s ease-in-out infinite;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
 
-  .btn-primary:hover {
-    background: var(--yellow-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(240, 201, 58, 0.4);
-  }
+@keyframes gridDrift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 8px); }
+}
 
-  .btn-outline {
-    background: transparent;
-    color: var(--white);
-    padding: 16px 34px;
-    border: 2px solid rgba(255, 255, 255, 0.25);
-    border-radius: 4px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.15rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: transform 0.25s, border-color 0.25s, background 0.25s;
-  }
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+}
 
-  .btn-outline:hover {
-    border-color: var(--green-light);
-    background: rgba(45, 138, 78, 0.1);
-    transform: translateY(-3px);
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  padding: 8px 16px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #86efac;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 12vw, 6.5rem);
+  line-height: 0.88;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.hero-sub {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--stone-300);
+  max-width: 520px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 28px;
+  border-radius: 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+  color: var(--bg-0);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 14px 36px rgba(251, 191, 36, 0.5);
+}
+
+.btn-green {
+  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  color: var(--bg-0);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35);
+}
+
+.btn-green:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 14px 36px rgba(34, 197, 94, 0.5);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.btn-ghost:hover {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Hero stats */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 16px;
+  background: rgba(10, 24, 16, 0.55);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+}
+
+.hero-stat {
+  text-align: center;
+  padding: 4px;
+}
+
+.hero-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  line-height: 1;
+  background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+}
+
+.hero-stat-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--stone-400);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--stone-400);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  animation: bob 2.5s ease-in-out infinite;
+}
+
+.scroll-indicator::after {
+  content: '';
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, var(--stone-400), transparent);
+}
+
+@keyframes bob {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.7; }
+  50% { transform: translate(-50%, 6px); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION COMMONS
+   ═══════════════════════════════════════════════════════════════════ */
+section {
+  position: relative;
+  padding: 72px 20px;
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 100px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 7vw, 3.4rem);
+  line-height: 1;
+  margin-bottom: 16px;
+  color: var(--cream);
+}
+
+.section-title .accent {
+  background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--stone-400);
+  line-height: 1.7;
+}
+
+/* Section transitions — subtle gradient between bg layers */
+.bg-layer-1 { background: var(--bg-1); }
+.bg-layer-2 { background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%); }
+.bg-layer-3 { background: var(--bg-2); }
+.bg-layer-4 { background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-3) 100%); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   CATEGORIES
+   ═══════════════════════════════════════════════════════════════════ */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.cat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 12px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+  backdrop-filter: blur(10px);
+}
+
+.cat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--green-600) 0%, var(--green-800) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  z-index: 0;
+}
+
+.cat-card::after {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(135deg, var(--green-500), var(--amber-400), var(--green-500));
+  border-radius: 18px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.35s;
+  filter: blur(8px);
+}
+
+.cat-card > * { position: relative; z-index: 1; }
+
+.cat-card:hover, .cat-card:active {
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow: var(--shadow-md), var(--glow-green);
+}
+
+.cat-card:hover::before, .cat-card:active::before { opacity: 1; }
+.cat-card:hover::after, .cat-card:active::after { opacity: 0.6; }
+
+.cat-ball {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 12px;
+  background: rgba(34, 197, 94, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: background 0.35s, transform 0.35s;
+}
+
+.cat-card:hover .cat-ball {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(-15deg) scale(1.1);
+}
+
+.cat-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.35s;
+}
+
+.cat-card:hover .cat-year {
+  background: none;
+  -webkit-text-fill-color: var(--cream);
+  color: var(--cream);
+}
+
+.cat-age {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone-400);
+  transition: color 0.35s;
+}
+
+.cat-card:hover .cat-age { color: var(--cream); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   WHY US
+   ═══════════════════════════════════════════════════════════════════ */
+.why-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.why-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s, border-color 0.35s;
+  backdrop-filter: blur(10px);
+}
+
+.why-card::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--green-500), var(--amber-400));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.why-card:hover, .why-card:active {
+  transform: translateY(-4px);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.why-card:hover::after, .why-card:active::after { transform: scaleX(1); }
+
+.why-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: all 0.35s;
+}
+
+.why-card:hover .why-icon {
+  background: linear-gradient(135deg, var(--green-500), var(--green-700));
+  border-color: var(--green-500);
+  transform: scale(1.08) rotate(-5deg);
+  box-shadow: var(--glow-green);
+}
+
+.why-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: #4ade80;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.35s;
+}
+
+.why-card:hover .why-icon svg { stroke: var(--cream); }
+
+.why-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--cream);
+}
+
+.why-card p {
+  font-size: 0.92rem;
+  color: var(--stone-400);
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   GALLERY — photo showcase
+   ═══════════════════════════════════════════════════════════════════ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 24, 16, 0.9) 0%, rgba(10, 24, 16, 0.2) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.gallery-item:hover, .gallery-item:active {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg), var(--glow-green);
+}
+
+.gallery-item:hover img, .gallery-item:active img {
+  transform: scale(1.06);
+}
+
+.gallery-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  padding: 20px;
+}
+
+.gallery-tag {
+  display: inline-block;
+  background: var(--amber-400);
+  color: var(--bg-0);
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.gallery-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--cream);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.gallery-desc {
+  font-size: 0.82rem;
+  color: var(--stone-300);
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCHEDULE
+   ═══════════════════════════════════════════════════════════════════ */
+.sched-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.sched-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: transform 0.35s, background 0.35s, border-color 0.35s;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.sched-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--green-500), var(--amber-400));
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease;
+}
+
+.sched-card:hover, .sched-card:active {
+  transform: translateX(6px);
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+
+.sched-card:hover::before, .sched-card:active::before { transform: scaleY(1); }
+
+.sched-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sched-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.05));
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--amber-400);
+  flex-shrink: 0;
+}
+
+.sched-day {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--cream);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.sched-sub {
+  font-size: 0.7rem;
+  color: var(--stone-400);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.sched-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  color: #4ade80;
+  letter-spacing: 0.04em;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   COACH
+   ═══════════════════════════════════════════════════════════════════ */
+.coach-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.coach-visual {
+  position: relative;
+  max-width: 420px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.coach-img-frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.coach-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.coach-img-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 24, 16, 0.7) 0%, transparent 45%);
+}
+
+.coach-initials {
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 7rem;
+  line-height: 0.9;
+  color: rgba(34, 197, 94, 0.15);
+  z-index: -1;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+.coach-badge-exp {
+  position: absolute;
+  top: 20px;
+  right: -14px;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-0);
+  box-shadow: var(--glow-amber), var(--shadow-md);
+  animation: floatY 3.5s ease-in-out infinite;
+  z-index: 2;
+}
+
+.coach-badge-exp strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.coach-badge-exp small {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.coach-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(10, 24, 16, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  padding: 8px 14px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.coach-tag span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  color: #4ade80;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.coach-role {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 100px;
+}
+
+.coach-name {
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  line-height: 0.92;
+  margin-bottom: 20px;
+  color: var(--cream);
+}
+
+.coach-name .accent {
+  background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+}
+
+.coach-desc {
+  font-size: 0.95rem;
+  color: var(--stone-300);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.coach-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0;
+}
+
+.pill {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #86efac;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.25s;
+}
+
+.pill:hover, .pill:active {
+  background: rgba(34, 197, 94, 0.25);
+  border-color: var(--green-500);
+  transform: translateY(-2px);
+  color: var(--cream);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TRIAL BANNER
+   ═══════════════════════════════════════════════════════════════════ */
+.trial {
+  padding: 0;
+}
+
+.trial-inner {
+  position: relative;
+  padding: 56px 24px;
+  background: linear-gradient(135deg, var(--amber-400) 0%, var(--amber-500) 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.trial-inner::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -10%;
+  width: 50%; height: 200%;
+  background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.2) 50%, transparent 60%);
+  transform: rotate(20deg);
+  animation: shimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translate(0, 0) rotate(20deg); }
+  50% { transform: translate(60%, 0) rotate(20deg); }
+}
+
+.trial-text { position: relative; z-index: 1; }
+
+.trial-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: rgba(10, 24, 16, 0.7);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.trial-heading {
+  font-size: clamp(1.8rem, 8vw, 3.4rem);
+  color: var(--bg-0);
+  line-height: 0.95;
+  margin-bottom: 16px;
+}
+
+.trial-sub {
+  font-size: 1rem;
+  color: rgba(10, 24, 16, 0.75);
+  line-height: 1.55;
+  max-width: 540px;
+  margin: 0 auto 28px;
+}
+
+.btn-dark {
+  background: var(--bg-0);
+  color: var(--amber-400);
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 10px 24px rgba(10, 24, 16, 0.4);
+}
+
+.btn-dark:hover, .btn-dark:active {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(10, 24, 16, 0.55);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CONTACT
+   ═══════════════════════════════════════════════════════════════════ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.35s;
+  backdrop-filter: blur(10px);
+}
+
+.contact-card:hover, .contact-card:active {
+  transform: translateY(-3px);
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.06);
+}
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.05));
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.35s;
+}
+
+.contact-card:hover .contact-icon {
+  background: linear-gradient(135deg, var(--green-500), var(--green-700));
+  border-color: var(--green-500);
+  transform: scale(1.05);
+}
+
+.contact-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #4ade80;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.35s;
+}
+
+.contact-card:hover .contact-icon svg { stroke: var(--cream); }
+
+.contact-body { flex: 1; min-width: 0; }
+
+.contact-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.contact-value {
+  font-size: 0.95rem;
+  color: var(--cream);
+  line-height: 1.5;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.contact-value a {
+  transition: color 0.2s;
+}
+
+.contact-value a:hover, .contact-value a:active { color: var(--amber-400); }
+
+.contact-value .muted {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--stone-500);
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* Map callout */
+.map-box {
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(251, 191, 36, 0.05));
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 18px;
+  text-align: center;
+}
+
+.map-box p {
+  font-size: 0.9rem;
+  color: var(--stone-300);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════ */
+footer {
+  background: #060e08;
+  border-top: 1px solid rgba(34, 197, 94, 0.15);
+  padding: 36px 20px 24px;
+  text-align: center;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-brand img {
+  height: 40px;
+}
+
+.footer-brand span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--stone-300);
+  letter-spacing: 0.08em;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: var(--stone-400);
+  max-width: 420px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.25), transparent);
+  margin: 20px auto;
+  max-width: 320px;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--stone-500);
+}
+
+.footer-copy a { color: var(--stone-400); transition: color 0.2s; }
+.footer-copy a:hover { color: #4ade80; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   REVEAL ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.d1 { transition-delay: 0.06s; }
+.d2 { transition-delay: 0.12s; }
+.d3 { transition-delay: 0.18s; }
+.d4 { transition-delay: 0.24s; }
+.d5 { transition-delay: 0.30s; }
+.d6 { transition-delay: 0.36s; }
+.d7 { transition-delay: 0.42s; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TABLET ≥ 640px
+   ═══════════════════════════════════════════════════════════════════ */
+@media (min-width: 640px) {
+  section { padding: 88px 32px; }
+
+  .hero-content { padding: 120px 32px 72px; }
+
+  .hero-actions {
+    flex-direction: row;
+    gap: 14px;
   }
 
   .hero-stats {
-    display: flex;
-    gap: 48px;
+    padding: 20px;
+    gap: 16px;
   }
 
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    line-height: 1;
-    color: var(--yellow);
-  }
-
-  .hero-stat-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.55);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 6px;
-  }
-
-  .hero-stat-divider {
-    width: 1px;
-    background: rgba(255, 255, 255, 0.12);
-  }
-
-  /* Hero visual — rotating field circle */
-  .hero-visual {
-    position: relative;
-    width: 100%;
-    max-width: 520px;
-    aspect-ratio: 1;
-    margin: 0 auto;
-  }
-
-  .field-circle,
-  .field-circle-inner,
-  .hero-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-  }
-
-  .field-circle {
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    border: 2px dashed rgba(45, 138, 78, 0.35);
-    animation: rotate 40s linear infinite;
-  }
-
-  .field-circle::before {
-    content: '';
-    position: absolute;
-    top: -7px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--yellow);
-    box-shadow: 0 0 18px var(--yellow);
-  }
-
-  .field-circle-inner {
-    width: 86%;
-    height: 86%;
-    transform: translate(-50%, -50%);
-    border: 1px solid rgba(240, 201, 58, 0.2);
-    animation: rotate 28s linear infinite reverse;
-  }
-
-  .field-circle-inner::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 20%;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--green-light);
-    box-shadow: 0 0 12px var(--green-light);
-  }
-
-  @keyframes rotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-
-  .hero-img {
-    width: 78%;
-    height: 78%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    border: 3px solid rgba(45, 138, 78, 0.6);
-    box-shadow: 0 0 80px rgba(45, 138, 78, 0.35), inset 0 0 30px rgba(0, 0, 0, 0.3);
-    z-index: 2;
-  }
-
-  .hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-  }
-
-  .hero-float-badge {
-    position: absolute;
-    bottom: 8%;
-    right: 0;
-    background: var(--yellow);
-    color: var(--dark);
-    padding: 14px 22px;
-    border-radius: 10px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.1;
-    text-align: center;
-    letter-spacing: 0.05em;
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
-    animation: floatUp 3.5s ease-in-out infinite;
-    z-index: 3;
-  }
-
-  @keyframes floatUp {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  /* ═══ SECTIONS COMMON ═══ */
-  section {
-    padding: 110px 48px;
-    position: relative;
-  }
-
-  .section-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto 72px;
-  }
-
-  .section-label {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--green-light);
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .section-title {
-    font-size: clamp(2.3rem, 4.2vw, 3.8rem);
-    line-height: 1;
-    margin-bottom: 20px;
-    color: var(--white);
-  }
-
-  .section-title .accent {
-    color: var(--yellow);
-  }
-
-  .section-subtitle {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.58);
-    line-height: 1.7;
-  }
-
-  /* ═══ CATEGORIES ═══ */
-  .categories {
-    background: var(--dark-2);
-  }
-
-  .cat-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 18px;
-  }
-
-  .cat-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(45, 138, 78, 0.2);
-    border-radius: 14px;
-    padding: 36px 16px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
-  }
-
-  .cat-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-    opacity: 0;
-    transition: opacity 0.35s;
-    z-index: 0;
-  }
-
-  .cat-card > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .cat-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--green);
-    box-shadow: 0 24px 48px rgba(45, 138, 78, 0.35);
-  }
-
-  .cat-card:hover::before {
-    opacity: 1;
-  }
-
-  .cat-ball {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 18px;
-    background: rgba(45, 138, 78, 0.18);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    transition: background 0.35s;
-  }
-
-  .cat-card:hover .cat-ball {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .cat-year {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    color: var(--yellow);
-    line-height: 1;
-    margin-bottom: 8px;
-    transition: color 0.35s;
-  }
-
-  .cat-card:hover .cat-year {
-    color: var(--white);
-  }
-
-  .cat-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-    transition: color 0.35s;
-  }
-
-  .cat-card:hover .cat-label {
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* ═══ WHY US ═══ */
-  .why {
-    background: var(--dark);
-  }
+  .cat-grid { grid-template-columns: repeat(4, 1fr); }
 
   .why-grid {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sched-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .contact-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DESKTOP ≥ 1024px
+   ═══════════════════════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .navbar { padding: 0 40px; height: 72px; }
+
+  .nav-brand img { height: 44px; }
+  .nav-brand-text strong { font-size: 1.25rem; }
+  .nav-brand-text small { font-size: 0.66rem; }
+
+  .nav-links { display: flex; }
+  .hamburger { display: none; }
+
+  .hero { padding-top: 72px; }
+  .hero-content { padding: 140px 40px 100px; max-width: 1200px; }
+
+  .hero-title { font-size: clamp(4rem, 8vw, 7rem); }
+  .hero-sub { font-size: 1.15rem; max-width: 560px; }
+  .hero-stats {
+    max-width: 540px;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  section { padding: 120px 40px; }
+
+  .section-header { margin-bottom: 72px; }
+
+  .cat-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+  }
+
+  .why-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
   }
 
-  .why-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 40px 28px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.35s, border-color 0.35s;
-  }
+  .why-card { padding: 36px 28px; }
 
-  .why-card::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--green), var(--yellow));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-
-  .why-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(45, 138, 78, 0.35);
-  }
-
-  .why-card:hover::after {
-    transform: scaleX(1);
-  }
-
-  .why-icon {
-    width: 58px;
-    height: 58px;
-    background: rgba(45, 138, 78, 0.15);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-    transition: background 0.35s;
-  }
-
-  .why-card:hover .why-icon {
-    background: rgba(45, 138, 78, 0.3);
-  }
-
-  .why-icon svg {
-    width: 26px;
-    height: 26px;
-    stroke: var(--green-light);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .why-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 14px;
-    color: var(--white);
-  }
-
-  .why-card p {
-    font-size: 0.92rem;
-    color: rgba(255, 255, 255, 0.58);
-    line-height: 1.7;
-  }
-
-  /* ═══ SCHEDULE ═══ */
-  .schedule {
-    background: var(--dark-2);
-    position: relative;
-  }
-
-  .schedule::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(45, 138, 78, 0.12) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .schedule-inner {
-    position: relative;
-    z-index: 1;
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 
   .sched-grid {
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    max-width: 1060px;
-    margin: 0 auto;
+    gap: 18px;
   }
 
   .sched-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 36px 24px;
-    text-align: center;
-    transition: transform 0.35s, background 0.35s, border-color 0.35s;
-    position: relative;
-    overflow: hidden;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+    gap: 18px;
   }
 
-  .sched-card:hover {
-    transform: translateY(-8px);
-    background: rgba(45, 138, 78, 0.12);
-    border-color: var(--green);
-    box-shadow: 0 16px 36px rgba(45, 138, 78, 0.2);
-  }
+  .sched-time { font-size: 1.35rem; text-align: left; }
 
-  .sched-day-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
-    color: var(--yellow);
-    letter-spacing: 0.2em;
-    margin-bottom: 8px;
-  }
-
-  .sched-day {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    color: var(--white);
-    letter-spacing: 0.06em;
-    margin-bottom: 20px;
-  }
-
-  .sched-time {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--green-light);
-    margin-bottom: 8px;
-  }
-
-  .sched-duration {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .sched-icon {
-    margin: 0 auto 18px;
-    width: 44px;
-    height: 44px;
-    background: rgba(45, 138, 78, 0.18);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .sched-icon svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--green-light);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  /* ═══ COACH ═══ */
-  .coach {
-    background: var(--dark);
-  }
-
-  .coach-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
+  .coach-wrap {
+    flex-direction: row;
     gap: 80px;
     align-items: center;
   }
 
-  .coach-visual {
-    position: relative;
-    aspect-ratio: 3 / 4;
-    max-width: 480px;
-  }
-
-  .coach-img-wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .coach-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-  }
-
-  .coach-img-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(13, 31, 18, 0.5) 0%, transparent 40%);
-  }
-
-  .coach-initials {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 9rem;
-    line-height: 0.9;
-    color: rgba(45, 138, 78, 0.18);
-    z-index: 0;
-    letter-spacing: -0.02em;
-  }
-
-  .coach-years-badge {
-    position: absolute;
-    top: 30px;
-    right: -28px;
-    background: var(--yellow);
-    color: var(--dark);
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 14px 40px rgba(240, 201, 58, 0.5);
-    z-index: 2;
-    animation: floatUp 3.5s ease-in-out infinite;
-  }
-
-  .coach-years-badge strong {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.6rem;
-    line-height: 1;
-    letter-spacing: 0;
-  }
-
-  .coach-years-badge small {
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-
-  .coach-corner-tag {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(13, 31, 18, 0.92);
-    border: 1px solid rgba(45, 138, 78, 0.4);
-    padding: 10px 18px;
-    border-radius: 8px;
-    z-index: 2;
-    backdrop-filter: blur(10px);
-  }
-
-  .coach-corner-tag span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
-    color: var(--green-light);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .coach-role {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--green-light);
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  .coach-name {
-    font-size: clamp(2.5rem, 4.5vw, 4.2rem);
-    line-height: 0.95;
-    margin-bottom: 26px;
-  }
-
-  .coach-name .accent {
-    color: var(--yellow);
-  }
-
-  .coach-desc {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.62);
-    line-height: 1.8;
-    margin-bottom: 20px;
-  }
-
-  .coach-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 32px;
-    margin-bottom: 36px;
-  }
-
-  .pill {
-    background: rgba(45, 138, 78, 0.15);
-    border: 1px solid rgba(45, 138, 78, 0.35);
-    color: var(--green-light);
-    padding: 9px 20px;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    transition: background 0.25s, border-color 0.25s, transform 0.25s;
-  }
-
-  .pill:hover {
-    background: rgba(45, 138, 78, 0.3);
-    border-color: var(--green);
-    transform: translateY(-2px);
-  }
-
-  /* ═══ TRIAL BANNER ═══ */
-  .trial {
-    padding: 0;
-  }
+  .coach-visual { flex: 0 0 400px; max-width: 400px; }
+  .coach-info { flex: 1; }
 
   .trial-inner {
-    background: var(--yellow);
-    padding: 80px 48px;
+    padding: 72px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 48px;
-    position: relative;
-    overflow: hidden;
+    text-align: left;
   }
 
-  .trial-inner::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 60%;
-    height: 200%;
-    background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
-    transform: rotate(25deg);
-    pointer-events: none;
-  }
+  .trial-text { max-width: 640px; }
+  .trial-sub { margin: 0; }
 
-  .trial-text {
-    position: relative;
-    z-index: 1;
-    max-width: 720px;
-  }
+  .contact-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
-  .trial-eyebrow {
-    font-size: 0.78rem;
-    font-weight: 800;
-    color: rgba(13, 31, 18, 0.7);
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .trial-heading {
-    font-size: clamp(2.2rem, 4.5vw, 4rem);
-    color: var(--dark);
-    line-height: 0.95;
-    margin-bottom: 16px;
-  }
-
-  .trial-sub {
-    font-size: 1.05rem;
-    color: rgba(13, 31, 18, 0.72);
-    line-height: 1.6;
-    max-width: 520px;
-  }
-
-  .btn-dark {
-    background: var(--dark);
-    color: var(--yellow);
-    padding: 20px 44px;
-    border: none;
-    border-radius: 6px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    position: relative;
-    z-index: 1;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .btn-dark:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 44px rgba(13, 31, 18, 0.5);
-  }
-
-  /* ═══ CONTACT ═══ */
-  .contact {
-    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-3) 100%);
-  }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-  }
-
-  .contact-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(45, 138, 78, 0.2);
-    border-radius: 16px;
-    padding: 36px 26px;
-    transition: transform 0.35s, border-color 0.35s, background 0.35s;
-  }
-
-  .contact-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(45, 138, 78, 0.55);
-    background: rgba(45, 138, 78, 0.08);
-  }
-
-  .contact-icon {
-    width: 54px;
-    height: 54px;
-    background: rgba(45, 138, 78, 0.2);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    transition: background 0.35s;
-  }
-
-  .contact-card:hover .contact-icon {
-    background: rgba(45, 138, 78, 0.35);
-  }
-
-  .contact-icon svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--green-light);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .contact-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--green-light);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .contact-value {
-    font-size: 0.98rem;
-    color: var(--white);
-    line-height: 1.6;
-    font-weight: 500;
-  }
-
-  .contact-value a {
-    color: inherit;
-    transition: color 0.25s;
-  }
-
-  .contact-value a:hover {
-    color: var(--yellow);
-  }
-
-  .contact-value .muted {
-    display: block;
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.4);
-    margin-top: 4px;
-    font-weight: 400;
-  }
-
-  /* ═══ FOOTER ═══ */
-  footer {
-    background: #060e08;
-    border-top: 1px solid rgba(45, 138, 78, 0.15);
-    padding: 36px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .footer-brand img {
-    height: 40px;
-  }
-
-  .footer-brand span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.08em;
-  }
-
-  .footer-copy {
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .footer-nav {
-    display: flex;
-    gap: 26px;
-    list-style: none;
-  }
-
-  .footer-nav a {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
-    transition: color 0.25s;
-  }
-
-  .footer-nav a:hover {
-    color: var(--green-light);
-  }
-
-  /* ═══ REVEAL ANIMATIONS ═══ */
-  .reveal {
-    opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 0.75s ease, transform 0.75s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .d1 { transition-delay: 0.08s; }
-  .d2 { transition-delay: 0.16s; }
-  .d3 { transition-delay: 0.24s; }
-  .d4 { transition-delay: 0.32s; }
-  .d5 { transition-delay: 0.4s; }
-  .d6 { transition-delay: 0.48s; }
-  .d7 { transition-delay: 0.56s; }
-
-  /* ═══ MOBILE RESPONSIVE @ 768px ═══ */
-  @media (max-width: 768px) {
-    .navbar {
-      padding: 0 20px;
-    }
-
-    .nav-links {
-      display: none;
-    }
-
-    .hamburger {
-      display: flex;
-    }
-
-    .hero-container {
-      grid-template-columns: 1fr;
-      padding: 60px 24px 80px;
-      gap: 40px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      margin: 0 auto 24px;
-    }
-
-    .hero-subtitle {
-      margin: 0 auto 36px;
-    }
-
-    .hero-ctas {
-      justify-content: center;
-    }
-
-    .hero-stats {
-      justify-content: center;
-      gap: 28px;
-    }
-
-    .hero-visual {
-      display: none;
-    }
-
-    section {
-      padding: 80px 20px;
-    }
-
-    .cat-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .why-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sched-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .coach-layout {
-      grid-template-columns: 1fr;
-      gap: 60px;
-    }
-
-    .coach-visual {
-      margin: 0 auto;
-      max-width: 360px;
-    }
-
-    .coach-years-badge {
-      width: 100px;
-      height: 100px;
-      right: -12px;
-    }
-
-    .coach-years-badge strong {
-      font-size: 2.2rem;
-    }
-
-    .trial-inner {
-      padding: 60px 24px;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .contact-grid {
-      grid-template-columns: 1fr;
-    }
-
-    footer {
-      padding: 32px 24px;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .section-header {
-      margin-bottom: 48px;
-    }
-
-    .hero-stat-num {
-      font-size: 2.4rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-title {
-      font-size: 3rem;
-    }
-
-    .hero-stats {
-      gap: 20px;
-    }
-
-    .hero-stat-divider {
-      display: none;
-    }
-
-    .btn-primary, .btn-outline {
-      padding: 14px 26px;
-      font-size: 1rem;
-    }
-  }
+  .map-box { padding: 28px; }
+}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ NAVBAR ═══════════════ -->
+<!-- ═══════════════════════════════════════════════════════════
+     NAVBAR
+     ═══════════════════════════════════════════════════════════ -->
 <header class="navbar" id="navbar">
-  <a href="#hero" class="nav-logo">
+  <a href="#hero" class="nav-brand">
     <img src="logo.png" alt="Primavera Constanța">
-    <div class="nav-logo-text">
+    <div class="nav-brand-text">
       <strong>Primavera</strong>
       <small>Constanța</small>
     </div>
@@ -1336,168 +1490,143 @@
 
   <nav>
     <ul class="nav-links">
-      <li><a href="#categories">Categorii</a></li>
-      <li><a href="#why">De Ce Noi</a></li>
-      <li><a href="#schedule">Program</a></li>
-      <li><a href="#coach">Antrenor</a></li>
+      <li><a href="#categorii">Categorii</a></li>
+      <li><a href="#de-ce-noi">De Ce Noi</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#program">Program</a></li>
+      <li><a href="#antrenor">Antrenor</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#trial" class="nav-cta">Înscrie-te</a></li>
     </ul>
   </nav>
 
-  <div class="hamburger" id="hamburger" aria-label="Meniu">
+  <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#categories" class="mob-link">Categorii</a>
-  <a href="#why" class="mob-link">De Ce Noi</a>
-  <a href="#schedule" class="mob-link">Program</a>
-  <a href="#coach" class="mob-link">Antrenor</a>
-  <a href="#contact" class="mob-link">Contact</a>
-  <a href="#trial" class="mob-link mob-cta">Înscrie-te</a>
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="drawer">
+  <a href="#categorii" class="drawer-link">Categorii</a>
+  <a href="#de-ce-noi" class="drawer-link">De Ce Noi</a>
+  <a href="#galerie" class="drawer-link">Galerie</a>
+  <a href="#program" class="drawer-link">Program</a>
+  <a href="#antrenor" class="drawer-link">Antrenor</a>
+  <a href="#contact" class="drawer-link">Contact</a>
+  <a href="#trial" class="drawer-link drawer-cta">Înscrie-te Acum</a>
 </div>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════ -->
 <section class="hero" id="hero">
-  <div class="hero-grid"></div>
+  <div class="hero-bg">
+    <img src="team.jpg" alt="Echipa Primavera pe teren" loading="eager">
+  </div>
+  <div class="hero-grid-overlay"></div>
 
-  <div class="hero-container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="pulse-dot"></span>
-        Academie de Fotbal · Constanța
-      </div>
-
-      <h1 class="hero-title">
-        Viitorul<br>
-        Fotbalului<br>
-        <span class="accent">Începe Aici.</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        Alătură-te clubului AS Primavera Constanța — antrenor calificat cu 16 ani experiență, antrenamente profesionale, cantonamente și competiții pentru copii născuți între 2014–2020.
-      </p>
-
-      <div class="hero-ctas">
-        <a href="#trial" class="btn-primary">⚽ Înscrie-te Acum</a>
-        <a href="#categories" class="btn-outline">→ Vezi Categoriile</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-num" data-target="16">0</span>
-          <span class="hero-stat-label">Ani Experiență</span>
-        </div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat">
-          <span class="hero-stat-num" data-target="7">0</span>
-          <span class="hero-stat-label">Categorii Vârstă</span>
-        </div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat">
-          <span class="hero-stat-num" data-target="2">0</span>
-          <span class="hero-stat-label">Antrenamente Gratuite</span>
-        </div>
-      </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      Academie de Fotbal · Constanța
     </div>
 
-    <div class="hero-visual">
-      <div class="field-circle"></div>
-      <div class="field-circle-inner"></div>
-      <div class="hero-img">
-        <img src="team.jpg" alt="Echipa Primavera Constanța">
+    <h1 class="hero-title">
+      Fiecare Copil<br>
+      Un <span class="accent">Viitor</span><br>
+      Campion.
+    </h1>
+
+    <p class="hero-sub">
+      Club local de fotbal pentru copii născuți între 2014–2020. Antrenor cu 16 ani experiență, antrenamente săptămânale, cantonamente la munte și competiții județene. Primele 2 antrenamente sunt gratuite.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#trial" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Primele 2 Gratuite
+      </a>
+      <a href="#categorii" class="btn btn-ghost">
+        Vezi Categoriile →
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="16">0</span>
+        <span class="hero-stat-label">Ani Experiență</span>
       </div>
-      <div class="hero-float-badge">
-        PRIMELE 2<br>GRATUITE
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="7">0</span>
+        <span class="hero-stat-label">Categorii</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="100" data-suffix="+">0</span>
+        <span class="hero-stat-label">Copii Formați</span>
       </div>
     </div>
   </div>
+
+  <div class="scroll-indicator">Scroll</div>
 </section>
 
-<!-- ═══════════════ CATEGORIES ═══════════════ -->
-<section class="categories" id="categories">
+<!-- ═══════════════════════════════════════════════════════════
+     CATEGORIES
+     ═══════════════════════════════════════════════════════════ -->
+<section id="categorii" class="bg-layer-1">
   <div class="section-inner">
     <div class="section-header reveal">
       <span class="section-label">Categorii de Vârstă</span>
       <h2 class="section-title">7 Grupe · <span class="accent">Toți Pot Juca</span></h2>
-      <p class="section-subtitle">De la cei mai mici jucători până la juniori avansați — avem o categorie pentru fiecare copil născut între 2014 și 2020.</p>
+      <p class="section-sub">De la cei mai mici jucători la juniori avansați — avem o categorie pentru fiecare copil născut între 2014 și 2020.</p>
     </div>
 
     <div class="cat-grid">
-      <div class="cat-card reveal d1">
-        <div class="cat-ball">⚽</div>
-        <div class="cat-year">2020</div>
-        <div class="cat-label">Categorie</div>
-      </div>
-      <div class="cat-card reveal d2">
-        <div class="cat-ball">⚽</div>
-        <div class="cat-year">2019</div>
-        <div class="cat-label">Categorie</div>
-      </div>
-      <div class="cat-card reveal d3">
-        <div class="cat-ball">⚽</div>
-        <div class="cat-year">2018</div>
-        <div class="cat-label">Categorie</div>
-      </div>
-      <div class="cat-card reveal d4">
-        <div class="cat-ball">⚽</div>
-        <div class="cat-year">2017</div>
-        <div class="cat-label">Categorie</div>
-      </div>
-      <div class="cat-card reveal d5">
-        <div class="cat-ball">⚽</div>
-        <div class="cat-year">2016</div>
-        <div class="cat-label">Categorie</div>
-      </div>
-      <div class="cat-card reveal d6">
-        <div class="cat-ball">⚽</div>
-        <div class="cat-year">2015</div>
-        <div class="cat-label">Categorie</div>
-      </div>
-      <div class="cat-card reveal d7">
-        <div class="cat-ball">⚽</div>
-        <div class="cat-year">2014</div>
-        <div class="cat-label">Categorie</div>
-      </div>
+      <div class="cat-card reveal d1"><div class="cat-ball">⚽</div><div class="cat-year">2020</div><div class="cat-age">4–5 ani</div></div>
+      <div class="cat-card reveal d2"><div class="cat-ball">⚽</div><div class="cat-year">2019</div><div class="cat-age">5–6 ani</div></div>
+      <div class="cat-card reveal d3"><div class="cat-ball">⚽</div><div class="cat-year">2018</div><div class="cat-age">6–7 ani</div></div>
+      <div class="cat-card reveal d4"><div class="cat-ball">⚽</div><div class="cat-year">2017</div><div class="cat-age">7–8 ani</div></div>
+      <div class="cat-card reveal d5"><div class="cat-ball">⚽</div><div class="cat-year">2016</div><div class="cat-age">8–9 ani</div></div>
+      <div class="cat-card reveal d6"><div class="cat-ball">⚽</div><div class="cat-year">2015</div><div class="cat-age">9–10 ani</div></div>
+      <div class="cat-card reveal d7"><div class="cat-ball">⚽</div><div class="cat-year">2014</div><div class="cat-age">10–11 ani</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ WHY US ═══════════════ -->
-<section class="why" id="why">
+<!-- ═══════════════════════════════════════════════════════════
+     WHY US
+     ═══════════════════════════════════════════════════════════ -->
+<section id="de-ce-noi" class="bg-layer-2">
   <div class="section-inner">
     <div class="section-header reveal">
       <span class="section-label">Avantajele Clubului</span>
       <h2 class="section-title">De Ce <span class="accent">Primavera?</span></h2>
-      <p class="section-subtitle">Mai mult decât antrenamente — o comunitate care dezvoltă jucători și caractere.</p>
+      <p class="section-sub">Mai mult decât antrenamente — o familie locală care dezvoltă jucători și caractere.</p>
     </div>
 
     <div class="why-grid">
       <div class="why-card reveal d1">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 15l-2 5l9-9l-9-9l2 5l-7 4z"/><circle cx="12" cy="12" r="10"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/></svg>
         </div>
-        <h3>Antrenor Calificat UEFA</h3>
-        <p>Paun Emil — antrenor licențiat cu 16 ani experiență în formarea jucătorilor tineri din Constanța.</p>
+        <h3>Antrenor Calificat</h3>
+        <p>Emil Păun — antrenor licențiat cu 16 ani de experiență în formarea jucătorilor tineri constănțeni.</p>
       </div>
 
       <div class="why-card reveal d2">
         <div class="why-icon">
           <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 01-2 2H7a2 2 0 01-2-2v-7M7.5 8a2.5 2.5 0 010-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 010 5"/></svg>
         </div>
-        <h3>Primele 2 Antrenamente Gratuite</h3>
-        <p>Primele 2 antrenamente sunt complet gratuite. Vino, testează și decide fără niciun risc sau obligație.</p>
+        <h3>Primele 2 Gratuite</h3>
+        <p>Primele 2 antrenamente sunt complet gratuite. Vino, testează atmosfera și decide fără niciun risc.</p>
       </div>
 
       <div class="why-card reveal d3">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 20l5-9l4 6l3-4l6 7H3z"/><circle cx="7" cy="7" r="2"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 20l5.5-10 4 6 3-4L22 20zM6 8a2 2 0 100-4 2 2 0 000 4z"/></svg>
         </div>
-        <h3>Cantonamente de Vară</h3>
-        <p>Tabere de vară la munte — unde copiii se dezvoltă fizic și mental, leagă prietenii și trăiesc aventura fotbalului real.</p>
+        <h3>Cantonamente la Munte</h3>
+        <p>Tabere de vară unde copiii se dezvoltă fizic și mental, leagă prietenii și trăiesc aventura fotbalului.</p>
       </div>
 
       <div class="why-card reveal d4">
@@ -1505,91 +1634,142 @@
           <svg viewBox="0 0 24 24"><path d="M6 9H4a2 2 0 01-2-2V5h4M18 9h2a2 2 0 002-2V5h-4M6 5h12v8a6 6 0 01-12 0V5zM10 21h4M12 17v4"/></svg>
         </div>
         <h3>Competiții Județene</h3>
-        <p>Participăm la competiții organizate pe fiecare categorie de vârstă. Copiii joacă meciuri reale în fiecare sezon.</p>
+        <p>Participăm la competiții pe fiecare categorie de vârstă. Copiii joacă meciuri reale în fiecare sezon.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ SCHEDULE ═══════════════ -->
-<section class="schedule" id="schedule">
-  <div class="section-inner schedule-inner">
+<!-- ═══════════════════════════════════════════════════════════
+     GALLERY — shows all photos in context
+     ═══════════════════════════════════════════════════════════ -->
+<section id="galerie" class="bg-layer-3">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">Momente Reale</span>
+      <h2 class="section-title">Viața la <span class="accent">Primavera</span></h2>
+      <p class="section-sub">Antrenamente, cantonamente și competiții — momentele care construiesc o echipă.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item reveal d1">
+        <img src="team.jpg" alt="Echipa Primavera" loading="lazy">
+        <div class="gallery-info">
+          <span class="gallery-tag">Echipa</span>
+          <h3 class="gallery-title">Generația Noastră</h3>
+          <p class="gallery-desc">Juniori antrenați cu pasiune.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal d2">
+        <img src="camp.jpg" alt="Cantonament la munte" loading="lazy">
+        <div class="gallery-info">
+          <span class="gallery-tag">Cantonament</span>
+          <h3 class="gallery-title">Tabără de Vară</h3>
+          <p class="gallery-desc">Aventură și fotbal la munte.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal d3">
+        <img src="coach.jpg" alt="Emil Păun pe teren" loading="lazy">
+        <div class="gallery-info">
+          <span class="gallery-tag">Antrenor</span>
+          <h3 class="gallery-title">Emil Păun</h3>
+          <p class="gallery-desc">16 ani de dedicare.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCHEDULE
+     ═══════════════════════════════════════════════════════════ -->
+<section id="program" class="bg-layer-4">
+  <div class="section-inner">
     <div class="section-header reveal">
       <span class="section-label">Orar Antrenamente</span>
       <h2 class="section-title">Program <span class="accent">Săptămânal</span></h2>
-      <p class="section-subtitle">4 zile pe săptămână pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, Constanța.</p>
+      <p class="section-sub">4 zile pe săptămână pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, Constanța.</p>
     </div>
 
     <div class="sched-grid">
       <div class="sched-card reveal d1">
-        <div class="sched-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="sched-left">
+          <div class="sched-badge">01</div>
+          <div class="sched-meta">
+            <div class="sched-day">Luni</div>
+            <div class="sched-sub">2 ore</div>
+          </div>
         </div>
-        <div class="sched-day-num">ZIUA 1</div>
-        <div class="sched-day">Luni</div>
-        <div class="sched-time">17:30 – 19:30</div>
-        <div class="sched-duration">2 ore</div>
+        <div class="sched-time">17:30–19:30</div>
       </div>
 
       <div class="sched-card reveal d2">
-        <div class="sched-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="sched-left">
+          <div class="sched-badge">02</div>
+          <div class="sched-meta">
+            <div class="sched-day">Marți</div>
+            <div class="sched-sub">1 oră</div>
+          </div>
         </div>
-        <div class="sched-day-num">ZIUA 2</div>
-        <div class="sched-day">Marți</div>
-        <div class="sched-time">17:00 – 18:00</div>
-        <div class="sched-duration">1 oră</div>
+        <div class="sched-time">17:00–18:00</div>
       </div>
 
       <div class="sched-card reveal d3">
-        <div class="sched-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="sched-left">
+          <div class="sched-badge">03</div>
+          <div class="sched-meta">
+            <div class="sched-day">Joi</div>
+            <div class="sched-sub">1 oră</div>
+          </div>
         </div>
-        <div class="sched-day-num">ZIUA 3</div>
-        <div class="sched-day">Joi</div>
-        <div class="sched-time">16:30 – 17:30</div>
-        <div class="sched-duration">1 oră</div>
+        <div class="sched-time">16:30–17:30</div>
       </div>
 
       <div class="sched-card reveal d4">
-        <div class="sched-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="sched-left">
+          <div class="sched-badge">04</div>
+          <div class="sched-meta">
+            <div class="sched-day">Vineri</div>
+            <div class="sched-sub">1 oră</div>
+          </div>
         </div>
-        <div class="sched-day-num">ZIUA 4</div>
-        <div class="sched-day">Vineri</div>
-        <div class="sched-time">17:00 – 18:00</div>
-        <div class="sched-duration">1 oră</div>
+        <div class="sched-time">17:00–18:00</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ COACH ═══════════════ -->
-<section class="coach" id="coach">
+<!-- ═══════════════════════════════════════════════════════════
+     COACH
+     ═══════════════════════════════════════════════════════════ -->
+<section id="antrenor" class="bg-layer-3">
   <div class="section-inner">
-    <div class="coach-layout">
+    <div class="coach-wrap">
       <div class="coach-visual reveal">
-        <div class="coach-initials">PE</div>
-        <div class="coach-img-wrap">
-          <img src="coach.jpg" alt="Antrenor Paun Emil">
-          <div class="coach-corner-tag">
-            <span>Antrenor Principal</span>
-          </div>
+        <div class="coach-initials">EP</div>
+        <div class="coach-img-frame">
+          <img src="coach.jpg" alt="Emil Păun — antrenor principal" loading="lazy">
+          <div class="coach-tag"><span>Antrenor Principal</span></div>
         </div>
-        <div class="coach-years-badge">
+        <div class="coach-badge-exp">
           <strong>16</strong>
           <small>ani exp.</small>
         </div>
       </div>
 
       <div class="coach-info reveal d2">
-        <p class="coach-role">Antrenorul Clubului</p>
-        <h2 class="coach-name">Pâun <span class="accent">Emil</span></h2>
+        <span class="coach-role">Antrenorul Clubului</span>
+        <h2 class="coach-name">
+          Emil
+          <span class="accent">Păun</span>
+        </h2>
         <p class="coach-desc">
-          Cu peste 16 ani de experiență în fotbalul de juniori, Pâun Emil este omul în jurul căruia Primavera Constanța a crescut generații de jucători. Metodele sale combină disciplina tactică cu pasiunea autentică pentru joc.
+          Cu peste 16 ani de experiență în fotbalul de juniori, Emil Păun este omul în jurul căruia Primavera Constanța a crescut generații de jucători. Metodele sale combină disciplina tactică cu pasiunea autentică pentru joc.
         </p>
         <p class="coach-desc">
-          Antrenor calificat și dedicat, prezent la fiecare sesiune de pregătire, Emil construiește mai mult decât fotbaliști — construiește caractere.
+          Antrenor calificat, prezent la fiecare sesiune, Emil construiește mai mult decât fotbaliști — construiește caractere, prietenii și încredere în sine.
         </p>
         <div class="coach-pills">
           <span class="pill">Antrenor Calificat</span>
@@ -1598,13 +1778,18 @@
           <span class="pill">Competiții Județene</span>
           <span class="pill">Cantonamente Vara</span>
         </div>
-        <a href="#trial" class="btn-primary">⚽ Înscrie-te Acum</a>
+        <a href="#trial" class="btn btn-green">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Înscrie-te Acum
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ FREE TRIAL BANNER ═══════════════ -->
+<!-- ═══════════════════════════════════════════════════════════
+     TRIAL BANNER
+     ═══════════════════════════════════════════════════════════ -->
 <section class="trial" id="trial">
   <div class="trial-inner">
     <div class="trial-text">
@@ -1613,18 +1798,21 @@
       <p class="trial-sub">Nu trebuie să decizi imediat. Vino cu copilul tău, experimentați atmosfera, cunoașteți antrenorul — fără costuri, fără angajamente.</p>
     </div>
     <a href="tel:0733657746" class="btn-dark">
-      📞 Sună: 0733 657 746
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2a19.79 19.79 0 01-8.63-3.07a19.5 19.5 0 01-6-6a19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg>
+      Sună: 0733 657 746
     </a>
   </div>
 </section>
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
-<section class="contact" id="contact">
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT
+     ═══════════════════════════════════════════════════════════ -->
+<section id="contact" class="bg-layer-3">
   <div class="section-inner">
     <div class="section-header reveal">
       <span class="section-label">Contactează-ne</span>
       <h2 class="section-title">Hai Să <span class="accent">Vorbim</span></h2>
-      <p class="section-subtitle">Suntem bucuroși să răspundem oricărei întrebări despre club, categorii sau înscriere.</p>
+      <p class="section-sub">Suntem bucuroși să răspundem oricărei întrebări despre club, categorii sau înscriere.</p>
     </div>
 
     <div class="contact-grid">
@@ -1632,11 +1820,13 @@
         <div class="contact-icon">
           <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
-        <div class="contact-label">Adresă</div>
-        <div class="contact-value">
-          Terenul Sintetic Arena Palas<br>
-          Strada Crișului nr. 20<br>
-          <span class="muted">Constanța</span>
+        <div class="contact-body">
+          <div class="contact-label">Adresă</div>
+          <div class="contact-value">
+            Teren Sintetic Arena Palas<br>
+            Str. Crișului nr. 20
+            <span class="muted">Constanța</span>
+          </div>
         </div>
       </div>
 
@@ -1644,21 +1834,25 @@
         <div class="contact-icon">
           <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2a19.79 19.79 0 01-8.63-3.07a19.5 19.5 0 01-6-6a19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg>
         </div>
-        <div class="contact-label">Telefon</div>
-        <div class="contact-value">
-          <a href="tel:0733657746">0733 657 746</a>
-          <span class="muted">Luni – Vineri, 10:00 – 20:00</span>
+        <div class="contact-body">
+          <div class="contact-label">Telefon</div>
+          <div class="contact-value">
+            <a href="tel:0733657746">0733 657 746</a>
+            <span class="muted">Luni–Vineri · 10:00–20:00</span>
+          </div>
         </div>
       </div>
 
       <div class="contact-card reveal d3">
         <div class="contact-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
         </div>
-        <div class="contact-label">Email</div>
-        <div class="contact-value">
-          <a href="mailto:asprimaveract@gmail.com">asprimaveract@gmail.com</a>
-          <span class="muted">Răspundem în 24h</span>
+        <div class="contact-body">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:asprimaveract@gmail.com">asprimaveract@gmail.com</a>
+            <span class="muted">Răspundem în 24h</span>
+          </div>
         </div>
       </div>
 
@@ -1666,98 +1860,114 @@
         <div class="contact-icon">
           <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <div class="contact-label">Program</div>
-        <div class="contact-value" style="font-size: 0.88rem;">
-          Luni: 17:30–19:30<br>
-          Marți: 17:00–18:00<br>
-          Joi: 16:30–17:30<br>
-          Vineri: 17:00–18:00
+        <div class="contact-body">
+          <div class="contact-label">Program</div>
+          <div class="contact-value" style="font-size: 0.85rem; line-height: 1.65;">
+            Luni: 17:30–19:30<br>
+            Marți: 17:00–18:00<br>
+            Joi: 16:30–17:30<br>
+            Vineri: 17:00–18:00
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="map-box reveal d5">
+      <p>📍 Ne găsești pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, în Constanța.<br>Vino la o vizită — primele 2 antrenamente sunt gratuite.</p>
+      <a href="https://maps.google.com/?q=Arena+Palas+Strada+Crisului+20+Constanta" target="_blank" rel="noopener" class="btn btn-green">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Deschide în Maps
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-brand">
     <img src="logo.png" alt="Primavera">
     <span>AS Primavera Constanța</span>
   </div>
-
-  <p class="footer-copy">© 2026 AS Primavera Constanța. Toate drepturile rezervate.</p>
-
-  <ul class="footer-nav">
-    <li><a href="#categories">Categorii</a></li>
-    <li><a href="#schedule">Program</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <p class="footer-tagline">
+    Academie locală de fotbal — formăm jucători și caractere de 16 ani în Constanța.
+  </p>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">
+    © 2026 AS Primavera Constanța · <a href="tel:0733657746">0733 657 746</a> · <a href="mailto:asprimaveract@gmail.com">asprimaveract@gmail.com</a>
+  </p>
 </footer>
 
 <script>
-  /* ═══ Hamburger Menu ═══ */
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobLinks = document.querySelectorAll('.mob-link');
+/* ═══════════════════════════════════════════════════════════
+   HAMBURGER + MOBILE DRAWER
+   ═══════════════════════════════════════════════════════════ */
+const hamburger = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+const drawerLinks = document.querySelectorAll('.drawer-link');
 
-  function toggleMenu(forceClose) {
-    const open = forceClose ? false : !mobileMenu.classList.contains('open');
-    mobileMenu.classList.toggle('open', open);
-    const spans = hamburger.querySelectorAll('span');
-    if (open) {
-      spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-    } else {
-      spans[0].style.transform = '';
-      spans[1].style.opacity = '';
-      spans[2].style.transform = '';
-    }
+function toggleDrawer(forceClose) {
+  const willOpen = forceClose ? false : !drawer.classList.contains('open');
+  drawer.classList.toggle('open', willOpen);
+  hamburger.classList.toggle('open', willOpen);
+  hamburger.setAttribute('aria-expanded', willOpen);
+  document.body.style.overflow = willOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', () => toggleDrawer());
+drawerLinks.forEach(link => link.addEventListener('click', () => toggleDrawer(true)));
+
+/* ═══════════════════════════════════════════════════════════
+   COUNTER ANIMATION
+   ═══════════════════════════════════════════════════════════ */
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(eased * target) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
   }
+  requestAnimationFrame(tick);
+}
 
-  hamburger.addEventListener('click', () => toggleMenu());
-  mobLinks.forEach(link => link.addEventListener('click', () => toggleMenu(true)));
-
-  /* ═══ Counter Animation ═══ */
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.target, 10);
-    const duration = 1800;
-    const start = performance.now();
-    function tick(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target);
-      if (p < 1) requestAnimationFrame(tick);
+/* ═══════════════════════════════════════════════════════════
+   INTERSECTION OBSERVER — reveal + counters
+   ═══════════════════════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
     }
-    requestAnimationFrame(tick);
-  }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 
-  /* ═══ Scroll Reveal (Intersection Observer) ═══ */
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* Hero counters fire once on load */
+window.addEventListener('load', () => {
+  document.querySelectorAll('[data-target]').forEach(animateCounter);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR SCROLL STATE
+   ═══════════════════════════════════════════════════════════ */
+const navbar = document.getElementById('navbar');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      navbar.classList.toggle('scrolled', window.scrollY > 24);
+      ticking = false;
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  /* ═══ Hero counters fire on page load ═══ */
-  window.addEventListener('load', () => {
-    document.querySelectorAll('[data-target]').forEach(animateCounter);
-  });
-
-  /* ═══ Navbar scroll state ═══ */
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      navbar.style.boxShadow = '0 6px 32px rgba(0, 0, 0, 0.45)';
-    } else {
-      navbar.style.boxShadow = 'none';
-    }
-  });
+    ticking = true;
+  }
+});
 </script>
 
 </body>
