@@ -644,6 +644,25 @@ section {
 .bg-layer-3 { background: var(--bg-2); }
 .bg-layer-4 { background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-3) 100%); }
 
+#categorii {
+  overflow: hidden;
+}
+
+#categorii::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(9, 20, 13, 0.82) 0%, rgba(12, 28, 19, 0.78) 48%, rgba(8, 18, 12, 0.9) 100%),
+    url('poza categorie background.jpg') center 32% / cover no-repeat;
+  opacity: 0.82;
+}
+
+#categorii .section-inner {
+  position: relative;
+  z-index: 1;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    CATEGORIES
    ═══════════════════════════════════════════════════════════════════ */
@@ -1109,8 +1128,9 @@ section {
 .coach-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 28px 0;
+  justify-content: center;
+  gap: 10px;
+  margin: 28px 0 18px;
 }
 
 .pill {
@@ -1130,6 +1150,11 @@ section {
   border-color: var(--green-500);
   transform: translateY(-2px);
   color: var(--cream);
+}
+
+.coach-cta {
+  display: flex;
+  justify-content: center;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1949,7 +1974,7 @@ footer {
     <div class="hero-actions">
       <a href="#trial" class="btn btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        PRIMELE 2 ANTRENAMENTE* GRATUITE
+        PRIMELE 2 ANTRENAMENTE GRATUITE
       </a>
       <a href="#categorii" class="btn btn-ghost">
         Vezi Categoriile →
@@ -2074,13 +2099,13 @@ footer {
           <span class="pill">Antrenor Calificat</span>
           <span class="pill">16 Ani Experiență</span>
           <span class="pill">Specialist Juniori</span>
-          <span class="pill">Competiții Județene</span>
-          <span class="pill">Cantonamente Vara</span>
         </div>
-        <a href="#trial" class="btn btn-green">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          Înscrie-te Acum
-        </a>
+        <div class="coach-cta">
+          <a href="#trial" class="btn btn-green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Înscrie-te Acum
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -2247,6 +2272,19 @@ footer {
 
       <div class="contact-card reveal d3">
         <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </div>
+        <div class="contact-body">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">
+            <a href="https://www.instagram.com/primavera_fotbal_kids.10/reels/" target="_blank" rel="noopener">primavera_fotbal_kids.10</a>
+            <span class="muted">Vezi reels, antrenamente și noutăți din club</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card reveal d4">
+        <div class="contact-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
         </div>
         <div class="contact-body">
@@ -2258,7 +2296,7 @@ footer {
         </div>
       </div>
 
-      <div class="contact-card reveal d4">
+      <div class="contact-card reveal d5">
         <div class="contact-icon">
           <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
@@ -2273,18 +2311,6 @@ footer {
         </div>
       </div>
 
-      <div class="contact-card reveal d5">
-        <div class="contact-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        </div>
-        <div class="contact-body">
-          <div class="contact-label">Instagram</div>
-          <div class="contact-value">
-            <a href="https://www.instagram.com/primavera_fotbal_kids.10/reels/" target="_blank" rel="noopener">primavera_fotbal_kids.10</a>
-            <span class="muted">Vezi reels, antrenamente și noutăți din club</span>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="map-box reveal d6">
