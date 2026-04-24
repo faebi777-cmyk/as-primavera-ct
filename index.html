@@ -7,6 +7,8 @@
 <meta name="description" content="AS Primavera Constanța — academie de fotbal pentru copii născuți între 2014–2020. Antrenor cu 16 ani experiență, primele 2 antrenamente gratuite.">
 <title>AS Primavera Constanța · Academie de Fotbal</title>
 <link rel="icon" href="logo.png" type="image/png">
+<link rel="shortcut icon" href="logo.png" type="image/png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -69,6 +71,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.site-loading {
+  overflow: hidden;
+}
+
 h1, h2, h3, h4, h5 {
   font-family: 'Bebas Neue', sans-serif;
   font-weight: 400;
@@ -86,6 +92,98 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 ::-webkit-scrollbar-track { background: var(--bg-0); }
 ::-webkit-scrollbar-thumb { background: var(--green-800); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--green-700); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   LOADER
+   ═══════════════════════════════════════════════════════════════════ */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(74, 222, 128, 0.18), transparent 42%),
+    linear-gradient(180deg, #0d2518 0%, #0a1810 100%);
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-card {
+  width: min(100%, 420px);
+  padding: 36px 28px;
+  border-radius: 28px;
+  text-align: center;
+  background: rgba(8, 20, 13, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45), 0 0 60px rgba(34, 197, 94, 0.16);
+  backdrop-filter: blur(18px);
+}
+
+.loader-logo-wrap {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 20px;
+  border-radius: 26px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), rgba(34, 197, 94, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.loader-logo {
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.3));
+}
+
+.loader-title {
+  font-size: clamp(1.7rem, 6vw, 2.5rem);
+  letter-spacing: 0.06em;
+  color: var(--cream);
+}
+
+.loader-sub {
+  margin: 10px auto 22px;
+  max-width: 28ch;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--stone-300);
+}
+
+.loader-progress {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.loader-progress-bar {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--amber-400), #fde68a, var(--green-500));
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.35);
+  transition: width 0.24s ease;
+}
+
+.loader-meta {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbf7d0;
+}
 
 /* ═══════════════════════════════════════════════════════════════════
    NAVBAR — mobile-first
@@ -310,10 +408,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   padding: 100px 20px 60px;
 }
 
+.hero-copy {
+  max-width: 720px;
+}
+
 .hero-title {
   font-size: clamp(2.3rem, 10vw, 5.4rem);
   line-height: 0.92;
-  margin-bottom: 24px;
+  max-width: 680px;
+  margin-top: -56px;
+  margin-bottom: 0;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
@@ -329,9 +433,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   font-size: clamp(1.1rem, 2.4vw, 1.4rem);
   font-weight: 500;
   color: var(--stone-300);
-  max-width: 620px;
-  margin-bottom: 36px;
-  line-height: 1.55;
+  max-width: 660px;
+  margin-top: 34px;
+  margin-bottom: 42px;
+  line-height: 1.7;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
@@ -512,22 +617,25 @@ section {
 }
 
 .section-sub {
-  font-size: 0.95rem;
-  color: var(--stone-400);
-  line-height: 1.7;
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: var(--stone-300);
+  line-height: 1.78;
 }
 
 .section-sub-lg {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--stone-300);
-  line-height: 1.55;
-  max-width: 580px;
+  line-height: 1.75;
+  max-width: 760px;
   margin: 0 auto;
 }
 
 @media (min-width: 1024px) {
-  .section-sub-lg { font-size: 1.3rem; }
+  .section-sub { font-size: 1.16rem; }
+  .section-sub-lg { font-size: 1.36rem; }
 }
 
 /* Section transitions — subtle gradient between bg layers */
@@ -677,9 +785,9 @@ section {
 }
 
 .why-card p {
-  font-size: 0.92rem;
-  color: var(--stone-400);
-  line-height: 1.65;
+  font-size: 1rem;
+  color: var(--stone-300);
+  line-height: 1.75;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -755,9 +863,11 @@ section {
 }
 
 .gallery-desc {
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   color: var(--stone-300);
-  margin-top: 4px;
+  line-height: 1.6;
+  margin-top: 8px;
+  max-width: 24ch;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -990,10 +1100,10 @@ section {
 }
 
 .coach-desc {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--stone-300);
-  line-height: 1.75;
-  margin-bottom: 16px;
+  line-height: 1.85;
+  margin-bottom: 18px;
 }
 
 .coach-pills {
@@ -1072,10 +1182,10 @@ section {
 }
 
 .trial-sub {
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: rgba(10, 24, 16, 0.75);
-  line-height: 1.55;
-  max-width: 540px;
+  line-height: 1.72;
+  max-width: 620px;
   margin: 0 auto 28px;
 }
 
@@ -1170,14 +1280,15 @@ section {
 }
 
 .contact-value {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--cream);
-  line-height: 1.5;
+  line-height: 1.65;
   font-weight: 500;
   word-break: break-word;
 }
 
 .contact-value a {
+  display: inline-block;
   transition: color 0.2s;
 }
 
@@ -1202,9 +1313,9 @@ section {
 }
 
 .map-box p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--stone-300);
-  line-height: 1.6;
+  line-height: 1.75;
   margin-bottom: 14px;
 }
 
@@ -1214,8 +1325,12 @@ section {
 footer {
   background: #060e08;
   border-top: 1px solid rgba(34, 197, 94, 0.15);
-  padding: 36px 20px 24px;
-  text-align: center;
+  padding: 40px 20px 28px;
+}
+
+.footer-shell {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .footer-brand {
@@ -1237,27 +1352,275 @@ footer {
 }
 
 .footer-tagline {
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   color: var(--stone-400);
-  max-width: 420px;
-  margin: 0 auto 20px;
-  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 0 28px;
+  line-height: 1.75;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.footer-card {
+  padding: 22px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.footer-card-title {
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+  color: var(--cream);
+}
+
+.footer-meta,
+.footer-note {
+  font-size: 0.94rem;
+  color: var(--stone-400);
+  line-height: 1.75;
+}
+
+.footer-note {
+  margin-top: 12px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  background: rgba(34, 197, 94, 0.08);
+  color: #bbf7d0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(251, 191, 36, 0.45);
+  color: var(--cream);
+  transform: translateY(-2px);
 }
 
 .footer-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.25), transparent);
-  margin: 20px auto;
-  max-width: 320px;
+  margin: 24px 0 18px;
 }
 
 .footer-copy {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--stone-500);
+  line-height: 1.7;
 }
 
 .footer-copy a { color: var(--stone-400); transition: color 0.2s; }
 .footer-copy a:hover { color: #4ade80; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   COOKIES + LEGAL MODAL
+   ═══════════════════════════════════════════════════════════════════ */
+.cookie-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 210;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(8, 18, 12, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.cookie-banner.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(18px);
+}
+
+.cookie-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--cream);
+}
+
+.cookie-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--stone-300);
+}
+
+.cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.cookie-btn {
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: transform 0.2s, filter 0.2s, background 0.2s;
+}
+
+.cookie-btn:hover,
+.cookie-btn:focus-visible {
+  transform: translateY(-2px);
+}
+
+.cookie-btn.accept {
+  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  color: var(--bg-0);
+}
+
+.cookie-btn.reject {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--cream);
+}
+
+.cookie-btn.settings {
+  background: transparent;
+  color: #bbf7d0;
+  border: 1px solid rgba(34, 197, 94, 0.28);
+}
+
+.legal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6, 14, 8, 0.84);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.legal-modal.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.legal-dialog {
+  position: relative;
+  width: min(100%, 860px);
+  max-height: min(86vh, 920px);
+  overflow: auto;
+  padding: 28px 22px 24px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(11, 24, 16, 0.96), rgba(8, 16, 11, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.45);
+}
+
+.legal-close {
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.legal-close:hover,
+.legal-close:focus-visible {
+  background: rgba(34, 197, 94, 0.18);
+}
+
+.legal-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+
+.legal-tab {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--stone-300);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.legal-tab.active {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(34, 197, 94, 0.32);
+  color: var(--cream);
+}
+
+.legal-panel {
+  display: none;
+}
+
+.legal-panel.active {
+  display: block;
+}
+
+.legal-title {
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.legal-intro,
+.legal-panel p,
+.legal-panel li {
+  font-size: 0.98rem;
+  color: var(--stone-300);
+  line-height: 1.75;
+}
+
+.legal-panel h4 {
+  margin: 24px 0 10px;
+  font-size: 1.12rem;
+  color: #bbf7d0;
+}
+
+.legal-list {
+  padding-left: 20px;
+}
+
+.legal-meta {
+  margin-top: 12px;
+  color: var(--stone-400);
+  font-size: 0.88rem;
+}
 
 /* ═══════════════════════════════════════════════════════════════════
    REVEAL ANIMATIONS
@@ -1367,6 +1730,8 @@ footer {
   section { padding: 88px 32px; }
 
   .hero-content { padding: 120px 32px 72px; }
+  .hero-title { margin-top: -72px; }
+  .hero-sub { margin-top: 44px; }
 
   .hero-actions {
     flex-direction: row;
@@ -1390,6 +1755,8 @@ footer {
   .sched-grid { grid-template-columns: repeat(2, 1fr); }
 
   .contact-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1407,8 +1774,19 @@ footer {
   .hero { padding-top: 72px; }
   .hero-content { padding: 140px 40px 100px; max-width: 1200px; }
 
-  .hero-title { font-size: clamp(3.4rem, 6.5vw, 5.8rem); }
-  .hero-sub { font-size: 1.4rem; max-width: 640px; font-weight: 500; }
+  .hero-title {
+    font-size: clamp(3.4rem, 6.5vw, 5.8rem);
+    margin-top: -96px;
+    max-width: 720px;
+  }
+
+  .hero-sub {
+    font-size: 1.4rem;
+    max-width: 670px;
+    font-weight: 500;
+    margin-top: 54px;
+  }
+
   .hero-stats {
     max-width: 540px;
     gap: 20px;
@@ -1473,10 +1851,36 @@ footer {
   .contact-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
   .map-box { padding: 28px; }
+
+  .footer-grid { grid-template-columns: 1.1fr 1fr 1fr; }
+
+  .cookie-banner {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+    max-width: 440px;
+  }
+
+  .legal-dialog {
+    padding: 32px 30px 28px;
+  }
 }
 </style>
 </head>
-<body>
+<body class="site-loading">
+<div class="page-loader" id="pageLoader" role="status" aria-live="polite">
+  <div class="loader-card">
+    <div class="loader-logo-wrap">
+      <img src="logo.png" alt="Logo AS Primavera Constanța" class="loader-logo">
+    </div>
+    <p class="loader-title">AS Primavera Constanța</p>
+    <p class="loader-sub">Pregătim terenul pentru antrenamente, galerie și informațiile clubului.</p>
+    <div class="loader-progress" aria-hidden="true">
+      <div class="loader-progress-bar" id="loaderProgressBar"></div>
+    </div>
+    <div class="loader-meta" id="loaderMeta">Se încarcă site-ul</div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════
      NAVBAR
@@ -1527,15 +1931,17 @@ footer {
   <div class="hero-grid-overlay"></div>
 
   <div class="hero-content">
-    <h1 class="hero-title">
-      Construim<br>
-      Viitoarele Generații<br>
-      De <span class="accent">Campioni.</span>
-    </h1>
+    <div class="hero-copy">
+      <h1 class="hero-title">
+        Construim<br>
+        Viitoarele Generații<br>
+        De <span class="accent">Campioni.</span>
+      </h1>
 
-    <p class="hero-sub">
-      Club local de fotbal pentru copii născuți între 2014–2020. Antrenor cu 16 ani experiență, antrenamente săptămânale, cantonamente la munte și competiții județene. Primele 2 antrenamente sunt gratuite.
-    </p>
+      <p class="hero-sub">
+        Club local de fotbal pentru copii născuți între 2014–2020. Antrenor cu 16 ani experiență, antrenamente săptămânale, cantonamente la munte și competiții județene. Primele 2 antrenamente sunt gratuite.
+      </p>
+    </div>
 
     <div class="hero-actions">
       <a href="#trial" class="btn btn-primary">
@@ -1574,7 +1980,7 @@ footer {
     <div class="section-header reveal">
       <span class="section-label">Avantajele Clubului</span>
       <h2 class="section-title">De Ce <span class="accent">Primavera?</span></h2>
-      <p class="section-sub">Mai mult decât antrenamente — o familie locală care dezvoltă jucători și caractere.</p>
+      <p class="section-sub">Mai mult decât antrenamente: o comunitate locală în care copiii cresc cu disciplină, curaj, prietenii sănătoase și încredere în propriul joc.</p>
     </div>
 
     <div class="why-grid">
@@ -1621,7 +2027,7 @@ footer {
     <div class="section-header reveal">
       <span class="section-label">Categorii de Vârstă</span>
       <h2 class="section-title">7 Grupe · <span class="accent">Toți Pot Juca</span></h2>
-      <p class="section-sub">De la cei mai mici jucători la juniori avansați — avem o categorie pentru fiecare copil născut între 2014 și 2020.</p>
+      <p class="section-sub">De la cei mai mici jucători la juniori avansați, fiecare copil își găsește grupa potrivită și ritmul corect de dezvoltare între 2014 și 2020.</p>
     </div>
 
     <div class="cat-list reveal">
@@ -1685,7 +2091,7 @@ footer {
     <div class="section-header reveal">
       <span class="section-label">Momente Reale</span>
       <h2 class="section-title">Viața la <span class="accent">Primavera</span></h2>
-      <p class="section-sub">Antrenamente, cantonamente și competiții — momentele care construiesc o echipă.</p>
+      <p class="section-sub">Antrenamente, cantonamente și competiții care leagă grupul, cresc disciplina și transformă fiecare generație într-o echipă adevărată.</p>
     </div>
 
     <div class="gallery-grid">
@@ -1694,7 +2100,7 @@ footer {
         <div class="gallery-info">
           <span class="gallery-tag">Echipa</span>
           <h3 class="gallery-title">Generația Noastră</h3>
-          <p class="gallery-desc">Juniori antrenați cu pasiune.</p>
+          <p class="gallery-desc">Antrenamente de echipă și energie bună la fiecare intrare pe teren.</p>
         </div>
       </div>
 
@@ -1703,7 +2109,7 @@ footer {
         <div class="gallery-info">
           <span class="gallery-tag">Cantonament</span>
           <h3 class="gallery-title">Tabără de Vară</h3>
-          <p class="gallery-desc">Aventură și fotbal la munte.</p>
+          <p class="gallery-desc">Pregătire intensă, aventură și experiențe care îi apropie pe copii.</p>
         </div>
       </div>
 
@@ -1712,7 +2118,7 @@ footer {
         <div class="gallery-info">
           <span class="gallery-tag">Antrenor</span>
           <h3 class="gallery-title">Emil Păun</h3>
-          <p class="gallery-desc">16 ani de dedicare.</p>
+          <p class="gallery-desc">16 ani de dedicare pentru formarea jucătorilor tineri din Constanța.</p>
         </div>
       </div>
     </div>
@@ -1727,7 +2133,7 @@ footer {
     <div class="section-header reveal">
       <span class="section-label">Orar Antrenamente</span>
       <h2 class="section-title">Program <span class="accent">Săptămânal</span></h2>
-      <p class="section-sub section-sub-lg">4 zile pe săptămână pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, Constanța.</p>
+      <p class="section-sub section-sub-lg">Ne antrenăm 4 zile pe săptămână pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, Constanța, într-un program stabil și ușor de urmărit pentru părinți.</p>
     </div>
 
     <div class="sched-grid">
@@ -1803,7 +2209,7 @@ footer {
     <div class="section-header reveal">
       <span class="section-label">Contactează-ne</span>
       <h2 class="section-title">Ia Legătura <span class="accent">Cu Noi</span></h2>
-      <p class="section-sub section-sub-lg">Suntem bucuroși să răspundem oricărei întrebări despre club, categorii sau înscriere.</p>
+      <p class="section-sub section-sub-lg">Suntem bucuroși să răspundem rapid la întrebări despre club, categorii, program, antrenamente gratuite și pașii pentru înscriere.</p>
     </div>
 
     <div class="contact-grid">
@@ -1814,9 +2220,11 @@ footer {
         <div class="contact-body">
           <div class="contact-label">Adresă</div>
           <div class="contact-value">
-            Teren Sintetic Arena Palas<br>
-            Str. Crișului nr. 20
-            <span class="muted">Constanța</span>
+            <a href="https://maps.google.com/?q=Arena+Palas+Strada+Crisului+20+Constanta" target="_blank" rel="noopener">
+              Teren Sintetic Arena Palas<br>
+              Str. Crișului nr. 20
+              <span class="muted">Constanța · Deschide în Google Maps</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1877,18 +2285,127 @@ footer {
      FOOTER
      ═══════════════════════════════════════════════════════════ -->
 <footer>
-  <div class="footer-brand">
-    <img src="logo.png" alt="Primavera">
-    <span>AS Primavera Constanța</span>
+  <div class="footer-shell">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Primavera">
+      <span>AS Primavera Constanța</span>
+    </div>
+    <p class="footer-tagline">
+      Academie locală de fotbal care formează jucători și caractere în Constanța, cu antrenamente dedicate copiilor născuți între 2014 și 2020.
+    </p>
+
+    <div class="footer-grid">
+      <div class="footer-card">
+        <h3 class="footer-card-title">Date Club</h3>
+        <p class="footer-meta">
+          AS Primavera Constanța<br>
+          Teren Sintetic Arena Palas, Str. Crișului nr. 20, Constanța<br>
+          Telefon: <a href="tel:0733657746">0733 657 746</a><br>
+          Email: <a href="mailto:asprimaveract@gmail.com">asprimaveract@gmail.com</a>
+        </p>
+      </div>
+
+      <div class="footer-card">
+        <h3 class="footer-card-title">Legal</h3>
+        <div class="footer-links">
+          <button type="button" class="footer-link legal-trigger" data-legal-open="legal">Informații legale</button>
+          <button type="button" class="footer-link legal-trigger" data-legal-open="privacy">Privacy Policy</button>
+          <button type="button" class="footer-link legal-trigger" data-legal-open="cookies">Cookie Policy</button>
+        </div>
+        <p class="footer-note">Documentele sunt construite cu datele de contact publicate în site și pot fi completate ulterior cu date fiscale suplimentare.</p>
+      </div>
+
+      <div class="footer-card">
+        <h3 class="footer-card-title">Protecția Consumatorului</h3>
+        <div class="footer-links">
+          <a href="https://anpc.ro/" target="_blank" rel="noopener" class="footer-link">ANPC</a>
+          <a href="https://anpc.ro/contact/" target="_blank" rel="noopener" class="footer-link">Reclamații ANPC</a>
+          <a href="https://anpc.ro/?p=63290" target="_blank" rel="noopener" class="footer-link">SAL ANPC</a>
+        </div>
+        <p class="footer-note">Pentru sesizări legate de servicii, poți încerca mai întâi o soluționare directă cu clubul, apoi canalele oficiale ANPC sau SAL.</p>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+    <p class="footer-copy">
+      © 2026 AS Primavera Constanța · Made by <a href="https://www.novigo.ro" target="_blank" rel="noopener">novigo.ro</a>
+    </p>
   </div>
-  <p class="footer-tagline">
-    Academie locală de fotbal — formăm jucători și caractere de 16 ani în Constanța.
-  </p>
-  <div class="footer-divider"></div>
-  <p class="footer-copy">
-    © 2026 AS Primavera Constanța · Made by <a href="https://www.novigo.ro" target="_blank" rel="noopener">novigo.ro</a>
-  </p>
 </footer>
+
+<div class="cookie-banner hidden" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Preferințe cookies">
+  <h3 class="cookie-title">Preferințe cookies</h3>
+  <p class="cookie-text">
+    Site-ul folosește cookies esențiale pentru funcționare și pentru a reține alegerea ta privind consimțământul. Poți accepta sau respinge cookies neesențiale.
+  </p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn accept" id="cookieAccept">Acceptă</button>
+    <button type="button" class="cookie-btn reject" id="cookieReject">Respinge</button>
+    <button type="button" class="cookie-btn settings legal-trigger" data-legal-open="cookies">Vezi politica</button>
+  </div>
+</div>
+
+<div class="legal-modal" id="legalModal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="legal-dialog">
+    <button type="button" class="legal-close" id="legalClose" aria-label="Închide fereastra legală">✕</button>
+
+    <div class="legal-tabs">
+      <button type="button" class="legal-tab active" data-legal-tab="legal">Legal</button>
+      <button type="button" class="legal-tab" data-legal-tab="privacy">Privacy</button>
+      <button type="button" class="legal-tab" data-legal-tab="cookies">Cookies</button>
+    </div>
+
+    <section class="legal-panel active" data-legal-panel="legal">
+      <h3 class="legal-title">Informații Legale</h3>
+      <p class="legal-intro">Acest site prezintă activitatea clubului AS Primavera Constanța și oferă informații despre antrenamente, program, contact și înscriere.</p>
+      <h4>Date de contact publicate</h4>
+      <ul class="legal-list">
+        <li>Club: AS Primavera Constanța</li>
+        <li>Loc desfășurare activitate: Teren Sintetic Arena Palas, Str. Crișului nr. 20, Constanța</li>
+        <li>Telefon: 0733 657 746</li>
+        <li>Email: asprimaveract@gmail.com</li>
+      </ul>
+      <h4>Scopul site-ului</h4>
+      <p>Site-ul are rol informativ și de prezentare. Înscrierea la antrenamente sau solicitarea de informații se realizează prin contact direct, telefonic sau prin email.</p>
+      <h4>Protecția consumatorului</h4>
+      <p>Pentru eventuale sesizări privind serviciile prezentate în site, recomandăm contactarea directă a clubului pentru o rezolvare rapidă. Dacă situația nu se rezolvă amiabil, poți folosi canalele oficiale ANPC și procedura SAL.</p>
+      <p class="legal-meta">Notă: platforma europeană ODR/SOL pentru litigii online a fost închisă la 20 iulie 2025, astfel că trimiterea către soluționare alternativă se face prin canalele active ANPC/SAL.</p>
+    </section>
+
+    <section class="legal-panel" data-legal-panel="privacy">
+      <h3 class="legal-title">Privacy Policy</h3>
+      <p class="legal-intro">AS Primavera Constanța prelucrează datele personale transmise voluntar prin telefon, email sau alte canale directe doar pentru a răspunde solicitărilor și pentru administrarea relației cu persoanele interesate de activitatea clubului.</p>
+      <h4>Ce date pot fi prelucrate</h4>
+      <ul class="legal-list">
+        <li>Nume și prenume ale părintelui sau reprezentantului legal</li>
+        <li>Date de contact, precum număr de telefon și adresă de email</li>
+        <li>Date comunicate voluntar despre copil, categorie de vârstă sau programul dorit</li>
+      </ul>
+      <h4>De ce sunt folosite</h4>
+      <ul class="legal-list">
+        <li>Pentru a răspunde la întrebări despre program, înscriere și antrenamente</li>
+        <li>Pentru organizarea participării la antrenamente sau activități sportive</li>
+        <li>Pentru comunicări administrative legate de activitatea clubului</li>
+      </ul>
+      <h4>Durata și drepturile tale</h4>
+      <p>Datele sunt păstrate doar atât cât este necesar pentru comunicarea și organizarea activităților solicitate sau cât impune legislația aplicabilă. Poți cere acces, rectificare, ștergere, restricționare, opoziție sau informații suplimentare prin email la <a href="mailto:asprimaveract@gmail.com">asprimaveract@gmail.com</a>.</p>
+    </section>
+
+    <section class="legal-panel" data-legal-panel="cookies">
+      <h3 class="legal-title">Cookie Policy</h3>
+      <p class="legal-intro">Site-ul folosește în principal cookies și stocare locală esențiale pentru funcționarea corectă și pentru a reține alegerea ta privind bannerul de consimțământ.</p>
+      <h4>Ce folosim</h4>
+      <ul class="legal-list">
+        <li>Stocare locală pentru alegerea de acceptare sau respingere a cookies</li>
+        <li>Resurse tehnice necesare afișării corecte a site-ului</li>
+      </ul>
+      <h4>Ce nu folosim în prezent</h4>
+      <p>În configurația actuală a site-ului nu sunt integrate module de analiză, profiling publicitar sau remarketing. Dacă acestea vor fi adăugate ulterior, politica și bannerul de consimțământ trebuie actualizate înainte de activare.</p>
+      <h4>Cum gestionezi opțiunea</h4>
+      <p>Îți poți modifica oricând preferința prin ștergerea stocării locale din browser și reîncărcarea paginii sau contactând clubul pentru informații suplimentare.</p>
+    </section>
+  </div>
+</div>
 
 <!-- Lightbox Modal -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
@@ -1905,6 +2422,18 @@ footer {
 const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('drawer');
 const drawerLinks = document.querySelectorAll('.drawer-link');
+const pageLoader = document.getElementById('pageLoader');
+const loaderProgressBar = document.getElementById('loaderProgressBar');
+const loaderMeta = document.getElementById('loaderMeta');
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+const cookieReject = document.getElementById('cookieReject');
+const legalModal = document.getElementById('legalModal');
+const legalClose = document.getElementById('legalClose');
+const legalTriggers = document.querySelectorAll('.legal-trigger');
+const legalTabs = document.querySelectorAll('.legal-tab');
+const legalPanels = document.querySelectorAll('.legal-panel');
+const COOKIE_KEY = 'primavera_cookie_consent_v1';
 
 function toggleDrawer(forceClose) {
   const willOpen = forceClose ? false : !drawer.classList.contains('open');
@@ -1916,6 +2445,86 @@ function toggleDrawer(forceClose) {
 
 hamburger.addEventListener('click', () => toggleDrawer());
 drawerLinks.forEach(link => link.addEventListener('click', () => toggleDrawer(true)));
+
+/* ═══════════════════════════════════════════════════════════
+   LOADER
+   ═══════════════════════════════════════════════════════════ */
+let loaderValue = 0;
+const loaderTimer = window.setInterval(() => {
+  loaderValue = Math.min(loaderValue + Math.random() * 16, 92);
+  loaderProgressBar.style.width = loaderValue.toFixed(0) + '%';
+}, 120);
+
+function finishLoadingExperience() {
+  clearInterval(loaderTimer);
+  loaderProgressBar.style.width = '100%';
+  loaderMeta.textContent = 'Gata de start';
+  window.setTimeout(() => {
+    pageLoader.classList.add('hidden');
+    document.body.classList.remove('site-loading');
+  }, 320);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEGAL MODAL + COOKIES
+   ═══════════════════════════════════════════════════════════ */
+function showLegalPanel(panelName) {
+  legalPanels.forEach(panel => {
+    panel.classList.toggle('active', panel.dataset.legalPanel === panelName);
+  });
+
+  legalTabs.forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.legalTab === panelName);
+  });
+}
+
+function openLegalModal(panelName) {
+  showLegalPanel(panelName || 'legal');
+  legalModal.classList.add('open');
+  legalModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLegalModal() {
+  legalModal.classList.remove('open');
+  legalModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function setCookieConsent(choice) {
+  try {
+    localStorage.setItem(COOKIE_KEY, choice);
+  } catch (error) {
+    console.warn('Cookie consent could not be stored.', error);
+  }
+  cookieBanner.classList.add('hidden');
+}
+
+function syncCookieBanner() {
+  let savedChoice = null;
+  try {
+    savedChoice = localStorage.getItem(COOKIE_KEY);
+  } catch (error) {
+    console.warn('Cookie consent could not be read.', error);
+  }
+  cookieBanner.classList.toggle('hidden', Boolean(savedChoice));
+}
+
+legalTriggers.forEach(trigger => {
+  trigger.addEventListener('click', () => openLegalModal(trigger.dataset.legalOpen));
+});
+
+legalTabs.forEach(tab => {
+  tab.addEventListener('click', () => showLegalPanel(tab.dataset.legalTab));
+});
+
+legalClose.addEventListener('click', closeLegalModal);
+legalModal.addEventListener('click', (e) => {
+  if (e.target === legalModal) closeLegalModal();
+});
+
+cookieAccept.addEventListener('click', () => setCookieConsent('accepted'));
+cookieReject.addEventListener('click', () => setCookieConsent('rejected'));
 
 /* ═══════════════════════════════════════════════════════════
    COUNTER ANIMATION
@@ -1951,6 +2560,8 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 /* Hero counters fire once on load */
 window.addEventListener('load', () => {
   document.querySelectorAll('[data-target]').forEach(animateCounter);
+  syncCookieBanner();
+  finishLoadingExperience();
 });
 
 /* ═══════════════════════════════════════════════════════════
@@ -1993,7 +2604,9 @@ lightboxClose.addEventListener('click', (e) => {
 
 /* Esc key closes */
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  if (e.key !== 'Escape') return;
+  if (lightbox.classList.contains('open')) closeLightbox();
+  if (legalModal.classList.contains('open')) closeLegalModal();
 });
 
 /* ═══════════════════════════════════════════════════════════
