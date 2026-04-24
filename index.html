@@ -1360,12 +1360,17 @@ footer {
 }
 
 .footer-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: nowrap;
   gap: 16px;
   margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 4px;
 }
 
 .footer-card {
+  flex: 1 1 0;
+  min-width: 260px;
   padding: 22px 20px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.03);
@@ -1756,7 +1761,7 @@ footer {
 
   .contact-grid { grid-template-columns: repeat(2, 1fr); }
 
-  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-card { min-width: 0; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1848,11 +1853,9 @@ footer {
   .trial-text { max-width: 640px; }
   .trial-sub { margin: 0; }
 
-  .contact-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .contact-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; }
 
   .map-box { padding: 28px; }
-
-  .footer-grid { grid-template-columns: 1.1fr 1fr 1fr; }
 
   .cookie-banner {
     left: auto;
@@ -1946,7 +1949,7 @@ footer {
     <div class="hero-actions">
       <a href="#trial" class="btn btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        Primele 2 Gratuite
+        PRIMELE 2 ANTRENAMENTE* GRATUITE
       </a>
       <a href="#categorii" class="btn btn-ghost">
         Vezi Categoriile →
@@ -2269,9 +2272,22 @@ footer {
           </div>
         </div>
       </div>
+
+      <div class="contact-card reveal d5">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </div>
+        <div class="contact-body">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">
+            <a href="https://www.instagram.com/primavera_fotbal_kids.10/reels/" target="_blank" rel="noopener">primavera_fotbal_kids.10</a>
+            <span class="muted">Vezi reels, antrenamente și noutăți din club</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="map-box reveal d5">
+    <div class="map-box reveal d6">
       <p>📍 Ne găsești pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, în Constanța.<br>Vino la o vizită — primele 2 antrenamente sunt gratuite.</p>
       <a href="https://maps.google.com/?q=Arena+Palas+Strada+Crisului+20+Constanta" target="_blank" rel="noopener" class="btn btn-green">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
