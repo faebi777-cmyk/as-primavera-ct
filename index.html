@@ -818,24 +818,50 @@ section {
   gap: 16px;
 }
 
-.gallery-item.is-video::before {
-  background: linear-gradient(to top, rgba(10, 24, 16, 0.95) 0%, rgba(10, 24, 16, 0.3) 50%, rgba(10, 24, 16, 0.15) 100%);
+/* Video card — logo background, no photo */
+.gallery-item.is-video {
+  background:
+    radial-gradient(ellipse at center, rgba(34, 197, 94, 0.18) 0%, transparent 65%),
+    linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
-.play-icon {
+.gallery-item.is-video img {
+  width: 58%;
+  height: 58%;
   position: absolute;
-  top: 50%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 72px;
-  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-item.is-video::before {
+  background: linear-gradient(to top, rgba(10, 24, 16, 0.96) 0%, rgba(10, 24, 16, 0.55) 35%, transparent 70%);
+}
+
+.gallery-item.is-video:hover img,
+.gallery-item.is-video:active img {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+/* Smaller play button positioned over the logo, well above the text */
+.play-icon {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: rgba(251, 191, 36, 0.95);
+  background: rgba(251, 191, 36, 0.96);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), var(--glow-amber);
+  z-index: 3;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55), 0 0 24px rgba(251, 191, 36, 0.55);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
@@ -846,16 +872,16 @@ section {
 }
 
 .play-icon svg {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   fill: var(--bg-0);
-  margin-left: 4px;
+  margin-left: 3px;
 }
 
 .play-icon::before {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -6px;
   border-radius: 50%;
   border: 2px solid rgba(251, 191, 36, 0.5);
   animation: ringPulse 2.2s ease-in-out infinite;
@@ -2183,14 +2209,14 @@ footer {
 
     <div class="gallery-grid">
       <div class="gallery-item is-video reveal d1" data-video="club-video.mp4">
-        <img src="team.jpg" alt="Spotul oficial AS Primavera Constanța" loading="lazy">
+        <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
         <div class="play-icon">
           <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </div>
         <div class="gallery-info">
           <span class="gallery-tag">Video</span>
-          <h3 class="gallery-title">Spotul Clubului</h3>
-          <p class="gallery-desc">Trăiește atmosfera de pe teren — apasă play și descoperă AS Primavera.</p>
+          <h3 class="gallery-title">Atmosfera Clubului</h3>
+          <p class="gallery-desc">Apasă play și trăiește energia de pe terenul nostru.</p>
         </div>
       </div>
 
