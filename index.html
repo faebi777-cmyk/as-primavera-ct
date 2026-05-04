@@ -1838,6 +1838,28 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   MOBILE ≤ 639px — fix image zoom on narrow screens
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 639px) {
+  .hero {
+    min-height: 85vh;
+    min-height: 85svh;
+  }
+  .hero-bg img {
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(0.95);
+    transform-origin: center center;
+  }
+  #categorii::before {
+    background:
+      linear-gradient(180deg, rgba(9, 20, 13, 0.82) 0%, rgba(12, 28, 19, 0.78) 48%, rgba(8, 18, 12, 0.9) 100%),
+      url('poza categorie background.jpg') center 20% / 150% auto no-repeat;
+    opacity: 0.82;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    TABLET ≥ 640px
    ═══════════════════════════════════════════════════════════════════ */
 @media (min-width: 640px) {
