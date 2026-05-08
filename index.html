@@ -942,31 +942,30 @@ section {
    ═══════════════════════════════════════════════════════════════════ */
 .colaj-carousel {
   position: relative;
+  overflow: hidden;
+  border-radius: 20px;
   user-select: none;
+  touch-action: pan-y;
 }
 
 .colaj-track {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-@media (min-width: 640px) {
-  .colaj-track { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .colaj-slide {
-  border-radius: 16px;
+  min-width: 100%;
+  flex-shrink: 0;
   overflow: hidden;
+  border-radius: 20px;
   cursor: pointer;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   background: var(--bg-2);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
 }
 
-.colaj-slide:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg), var(--glow-green);
+@media (min-width: 640px) {
+  .colaj-slide { aspect-ratio: 16 / 9; }
 }
 
 .colaj-slide img,
@@ -975,46 +974,67 @@ section {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.colaj-slide:hover img,
-.colaj-slide:hover video { transform: scale(1.04); }
+.colaj-slide:hover img { transform: scale(1.03); }
 
-.colaj-slide.is-video-slide {
-  position: relative;
-}
-
-.colaj-play {
+.colaj-btn {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.colaj-play-btn {
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(251, 191, 36, 0.92);
+  border: none;
+  background: rgba(10, 24, 16, 0.75);
+  backdrop-filter: blur(8px);
+  color: var(--cream);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  transition: background 0.2s, transform 0.2s;
 }
 
-.colaj-play-btn svg {
-  width: 18px;
-  height: 18px;
-  fill: var(--bg-0);
-  margin-left: 2px;
+.colaj-btn:hover { background: var(--green-500); transform: translateY(-50%) scale(1.1); }
+
+.colaj-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.colaj-btn { display: none; }
-.colaj-dots { display: none; }
+.colaj-prev { left: 14px; }
+.colaj-next { right: 14px; }
+
+.colaj-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.colaj-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.colaj-dot.active {
+  background: var(--green-500);
+  transform: scale(1.35);
+}
 
 /* ═══════════════════════════════════════════════════════════════════
    SCHEDULE
@@ -2380,14 +2400,6 @@ footer {
         </div>
 
         <div class="colaj-slide">
-          <img src="colaj-2.jpg" alt="Primavera" loading="lazy">
-        </div>
-
-        <div class="colaj-slide">
-          <img src="colaj-3.jpg" alt="Primavera" loading="lazy">
-        </div>
-
-        <div class="colaj-slide">
           <img src="colaj-4.jpg" alt="Primavera" loading="lazy">
         </div>
 
@@ -2930,18 +2942,49 @@ document.querySelectorAll('.gcard').forEach(card => {
   });
 });
 
-/* Colaj grid — click → lightbox */
-document.querySelectorAll('.colaj-slide').forEach(slide => {
-  slide.addEventListener('click', () => {
-    const videoSrc = slide.dataset.video;
-    if (videoSrc) {
-      openLightboxVideo(videoSrc);
-    } else {
+/* ═══════════════════════════════════════════════════════════
+   COLAJ CAROUSEL
+   ═══════════════════════════════════════════════════════════ */
+(function() {
+  const track = document.getElementById('colajTrack');
+  const dotsWrap = document.getElementById('colajDots');
+  const btnPrev = document.getElementById('colajPrev');
+  const btnNext = document.getElementById('colajNext');
+  if (!track) return;
+
+  const slides = Array.from(track.querySelectorAll('.colaj-slide'));
+  let current = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'colaj-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('.colaj-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  slides.forEach(slide => {
+    slide.addEventListener('click', () => {
       const img = slide.querySelector('img');
       if (img) openLightboxImage(img.src, img.alt);
-    }
+    });
   });
-});
+})();
 
 /* Close only when clicking the dimmed backdrop (not the media or its controls) */
 lightbox.addEventListener('click', (e) => {
