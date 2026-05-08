@@ -955,9 +955,8 @@ section {
 }
 
 .colaj-slide {
-  min-width: calc(50% - 6px);
-  margin-right: 12px;
-  border-radius: 16px;
+  min-width: 100%;
+  border-radius: 20px;
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;
@@ -966,11 +965,7 @@ section {
 }
 
 @media (min-width: 640px) {
-  .colaj-slide { min-width: calc(33.333% - 8px); margin-right: 12px; }
-}
-
-@media (min-width: 1024px) {
-  .colaj-slide { min-width: calc(25% - 9px); }
+  .colaj-slide { aspect-ratio: 16 / 9; }
 }
 
 .colaj-slide img,
@@ -2999,42 +2994,23 @@ document.querySelectorAll('.gcard').forEach(card => {
   if (!track) return;
 
   const slides = Array.from(track.querySelectorAll('.colaj-slide'));
-
-  /* How many slides visible at once based on viewport */
-  function perView() {
-    if (window.innerWidth >= 1024) return 4;
-    if (window.innerWidth >= 640) return 3;
-    return 2;
-  }
-
   let current = 0;
 
-  function maxIndex() { return Math.max(0, slides.length - perView()); }
+  /* Build dots */
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'colaj-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
 
-  /* Build dots — one per "page" */
-  function buildDots() {
-    dotsWrap.innerHTML = '';
-    const pages = maxIndex() + 1;
-    for (let i = 0; i < pages; i++) {
-      const d = document.createElement('button');
-      d.className = 'colaj-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Pagina ' + (i + 1));
-      d.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(d);
-    }
-  }
-
-  function updateDots() {
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
     dotsWrap.querySelectorAll('.colaj-dot').forEach((d, i) => {
       d.classList.toggle('active', i === current);
     });
-  }
-
-  function goTo(index) {
-    current = Math.max(0, Math.min(index, maxIndex()));
-    const slideW = slides[0].getBoundingClientRect().width + 12;
-    track.style.transform = `translateX(-${current * slideW}px)`;
-    updateDots();
   }
 
   btnPrev.addEventListener('click', () => goTo(current - 1));
@@ -3061,14 +3037,10 @@ document.querySelectorAll('.gcard').forEach(card => {
     });
   });
 
-  /* Rebuild on resize */
-  window.addEventListener('resize', () => {
-    buildDots();
-    goTo(0);
-  });
-
-  buildDots();
-  goTo(0);
+  /* Autoplay */
+  let timer = setInterval(() => goTo(current + 1), 4000);
+  track.addEventListener('mouseenter', () => clearInterval(timer));
+  track.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(current + 1), 4000); });
 })();
 
 /* Close only when clicking the dimmed backdrop (not the media or its controls) */
