@@ -942,30 +942,31 @@ section {
    ═══════════════════════════════════════════════════════════════════ */
 .colaj-carousel {
   position: relative;
-  overflow: hidden;
-  border-radius: 0;
   user-select: none;
-  touch-action: pan-y;
 }
 
 .colaj-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-.colaj-slide {
-  min-width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  flex-shrink: 0;
-  cursor: pointer;
-  aspect-ratio: 4 / 3;
-  background: var(--bg-2);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
 @media (min-width: 640px) {
-  .colaj-slide { aspect-ratio: 16 / 9; }
+  .colaj-track { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+}
+
+.colaj-slide {
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-2);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+}
+
+.colaj-slide:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), var(--glow-green);
 }
 
 .colaj-slide img,
@@ -1012,62 +1013,8 @@ section {
   margin-left: 2px;
 }
 
-.colaj-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(10, 24, 16, 0.75);
-  backdrop-filter: blur(8px);
-  color: var(--cream);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.colaj-btn:hover { background: var(--green-500); transform: translateY(-50%) scale(1.1); }
-
-.colaj-btn svg {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.colaj-prev { left: 10px; }
-.colaj-next { right: 10px; }
-
-.colaj-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.colaj-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.25);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.colaj-dot.active {
-  background: var(--green-500);
-  transform: scale(1.4);
-}
+.colaj-btn { display: none; }
+.colaj-dots { display: none; }
 
 /* ═══════════════════════════════════════════════════════════════════
    SCHEDULE
@@ -2983,65 +2930,18 @@ document.querySelectorAll('.gcard').forEach(card => {
   });
 });
 
-/* ═══════════════════════════════════════════════════════════
-   COLAJ CAROUSEL
-   ═══════════════════════════════════════════════════════════ */
-(function() {
-  const track = document.getElementById('colajTrack');
-  const dotsWrap = document.getElementById('colajDots');
-  const btnPrev = document.getElementById('colajPrev');
-  const btnNext = document.getElementById('colajNext');
-  if (!track) return;
-
-  const slides = Array.from(track.querySelectorAll('.colaj-slide'));
-  let current = 0;
-
-  /* Build dots */
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'colaj-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Slide ' + (i + 1));
-    d.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(d);
+/* Colaj grid — click → lightbox */
+document.querySelectorAll('.colaj-slide').forEach(slide => {
+  slide.addEventListener('click', () => {
+    const videoSrc = slide.dataset.video;
+    if (videoSrc) {
+      openLightboxVideo(videoSrc);
+    } else {
+      const img = slide.querySelector('img');
+      if (img) openLightboxImage(img.src, img.alt);
+    }
   });
-
-  function goTo(index) {
-    current = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dotsWrap.querySelectorAll('.colaj-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-    });
-  }
-
-  btnPrev.addEventListener('click', () => goTo(current - 1));
-  btnNext.addEventListener('click', () => goTo(current + 1));
-
-  /* Touch swipe */
-  let tx = 0;
-  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
-  }, { passive: true });
-
-  /* Click → lightbox */
-  slides.forEach(slide => {
-    slide.addEventListener('click', () => {
-      const videoSrc = slide.dataset.video;
-      if (videoSrc) {
-        openLightboxVideo(videoSrc);
-      } else {
-        const img = slide.querySelector('img');
-        if (img) openLightboxImage(img.src, img.alt);
-      }
-    });
-  });
-
-  /* Autoplay */
-  let timer = setInterval(() => goTo(current + 1), 4000);
-  track.addEventListener('mouseenter', () => clearInterval(timer));
-  track.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(current + 1), 4000); });
-})();
+});
 
 /* Close only when clicking the dimmed backdrop (not the media or its controls) */
 lightbox.addEventListener('click', (e) => {
