@@ -972,12 +972,10 @@ section {
 .colaj-slide video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--bg-1);
   display: block;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.colaj-slide:hover img { transform: scale(1.03); }
 
 .colaj-btn {
   position: absolute;
@@ -2979,9 +2977,10 @@ document.querySelectorAll('.gcard').forEach(card => {
   }, { passive: true });
 
   slides.forEach(slide => {
-    slide.addEventListener('click', () => {
+    slide.addEventListener('click', (e) => {
+      e.stopPropagation();
       const img = slide.querySelector('img');
-      if (img) openLightboxImage(img.src, img.alt);
+      if (img) openLightboxImage(img.currentSrc || img.src, img.alt);
     });
   });
 })();
