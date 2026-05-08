@@ -938,6 +938,143 @@ section {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   COLAJ — media carousel
+   ═══════════════════════════════════════════════════════════════════ */
+.colaj-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.colaj-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.colaj-slide {
+  min-width: calc(50% - 6px);
+  margin-right: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-2);
+}
+
+@media (min-width: 640px) {
+  .colaj-slide { min-width: calc(33.333% - 8px); margin-right: 12px; }
+}
+
+@media (min-width: 1024px) {
+  .colaj-slide { min-width: calc(25% - 9px); }
+}
+
+.colaj-slide img,
+.colaj-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.colaj-slide:hover img,
+.colaj-slide:hover video { transform: scale(1.04); }
+
+.colaj-slide.is-video-slide {
+  position: relative;
+}
+
+.colaj-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.colaj-play-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+
+.colaj-play-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--bg-0);
+  margin-left: 2px;
+}
+
+.colaj-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(10, 24, 16, 0.75);
+  backdrop-filter: blur(8px);
+  color: var(--cream);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.colaj-btn:hover { background: var(--green-500); transform: translateY(-50%) scale(1.1); }
+
+.colaj-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.colaj-prev { left: 10px; }
+.colaj-next { right: 10px; }
+
+.colaj-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.colaj-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.colaj-dot.active {
+  background: var(--green-500);
+  transform: scale(1.4);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    SCHEDULE
    ═══════════════════════════════════════════════════════════════════ */
 .sched-grid {
@@ -1991,6 +2128,7 @@ footer {
       <li><a href="#categorii">Categorii</a></li>
       <li><a href="#antrenor">Antrenor</a></li>
       <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#colaj">Colaj</a></li>
       <li><a href="#program">Program</a></li>
       <li><a href="#trial" class="nav-cta">Înscrie-te</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -2008,6 +2146,7 @@ footer {
   <a href="#categorii" class="drawer-link">Categorii</a>
   <a href="#antrenor" class="drawer-link">Antrenor</a>
   <a href="#galerie" class="drawer-link">Galerie</a>
+  <a href="#colaj" class="drawer-link">Colaj</a>
   <a href="#program" class="drawer-link">Program</a>
   <a href="#trial" class="drawer-link drawer-cta">Înscrie-te Acum</a>
   <a href="#contact" class="drawer-link">Contact</a>
@@ -2277,6 +2416,50 @@ footer {
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COLAJ — media carousel
+     ═══════════════════════════════════════════════════════════ -->
+<section id="colaj" class="bg-layer-1">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">Colaj Media</span>
+      <h2 class="section-title">Clipuri & <span class="accent">Amintiri</span></h2>
+      <p class="section-sub">Momente surprinse din antrenamente, meciuri și cantonamente.</p>
+    </div>
+
+    <div class="colaj-carousel reveal">
+      <div class="colaj-track" id="colajTrack">
+
+        <div class="colaj-slide">
+          <img src="col1.jpg" alt="Primavera" loading="lazy">
+        </div>
+
+        <div class="colaj-slide">
+          <img src="col2.jpg" alt="Primavera" loading="lazy">
+        </div>
+
+        <div class="colaj-slide">
+          <img src="col3.jpg" alt="Primavera" loading="lazy">
+        </div>
+
+        <div class="colaj-slide">
+          <img src="col4.jpg" alt="Primavera" loading="lazy">
+        </div>
+
+      </div>
+
+      <button class="colaj-btn colaj-prev" id="colajPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="colaj-btn colaj-next" id="colajNext" aria-label="Următor">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="colaj-dots" id="colajDots"></div>
   </div>
 </section>
 
@@ -2804,6 +2987,89 @@ document.querySelectorAll('.gcard').forEach(card => {
     }
   });
 });
+
+/* ═══════════════════════════════════════════════════════════
+   COLAJ CAROUSEL
+   ═══════════════════════════════════════════════════════════ */
+(function() {
+  const track = document.getElementById('colajTrack');
+  const dotsWrap = document.getElementById('colajDots');
+  const btnPrev = document.getElementById('colajPrev');
+  const btnNext = document.getElementById('colajNext');
+  if (!track) return;
+
+  const slides = Array.from(track.querySelectorAll('.colaj-slide'));
+
+  /* How many slides visible at once based on viewport */
+  function perView() {
+    if (window.innerWidth >= 1024) return 4;
+    if (window.innerWidth >= 640) return 3;
+    return 2;
+  }
+
+  let current = 0;
+
+  function maxIndex() { return Math.max(0, slides.length - perView()); }
+
+  /* Build dots — one per "page" */
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    const pages = maxIndex() + 1;
+    for (let i = 0; i < pages; i++) {
+      const d = document.createElement('button');
+      d.className = 'colaj-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Pagina ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function updateDots() {
+    dotsWrap.querySelectorAll('.colaj-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, maxIndex()));
+    const slideW = slides[0].getBoundingClientRect().width + 12;
+    track.style.transform = `translateX(-${current * slideW}px)`;
+    updateDots();
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+
+  /* Touch swipe */
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  /* Click → lightbox */
+  slides.forEach(slide => {
+    slide.addEventListener('click', () => {
+      const videoSrc = slide.dataset.video;
+      if (videoSrc) {
+        openLightboxVideo(videoSrc);
+      } else {
+        const img = slide.querySelector('img');
+        if (img) openLightboxImage(img.src, img.alt);
+      }
+    });
+  });
+
+  /* Rebuild on resize */
+  window.addEventListener('resize', () => {
+    buildDots();
+    goTo(0);
+  });
+
+  buildDots();
+  goTo(0);
+})();
 
 /* Close only when clicking the dimmed backdrop (not the media or its controls) */
 lightbox.addEventListener('click', (e) => {
