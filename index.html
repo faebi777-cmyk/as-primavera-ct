@@ -938,92 +938,12 @@ section {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   COLAJ — media carousel
+   COLAJ — photo grid
    ═══════════════════════════════════════════════════════════════════ */
-.colaj-carousel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  user-select: none;
-  touch-action: pan-y;
-}
-
-.colaj-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-.colaj-slide {
-  min-width: 100%;
-  flex-shrink: 0;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.colaj-slide img,
-.colaj-slide video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 20px;
-}
-
-.colaj-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(10, 24, 16, 0.75);
-  backdrop-filter: blur(8px);
-  color: var(--cream);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.colaj-btn:hover { background: var(--green-500); transform: translateY(-50%) scale(1.1); }
-
-.colaj-btn svg {
-  width: 22px;
-  height: 22px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.colaj-prev { left: 14px; }
-.colaj-next { right: 14px; }
-
-.colaj-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.colaj-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.25);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.colaj-dot.active {
-  background: var(--green-500);
-  transform: scale(1.35);
+.colaj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -2382,28 +2302,21 @@ footer {
       <p class="section-sub">Momente surprinse din antrenamente, meciuri și cantonamente.</p>
     </div>
 
-    <div class="colaj-carousel reveal">
-      <div class="colaj-track" id="colajTrack">
+    <div class="colaj-grid">
 
-        <div class="colaj-slide">
+      <div class="gcard reveal d1" onclick="openLightboxImage('colaj-1.jpg','Primavera')">
+        <div class="gcard-thumb">
           <img src="colaj-1.jpg" alt="Primavera" loading="lazy">
         </div>
-
-        <div class="colaj-slide">
-          <img src="colaj-4.jpg" alt="Primavera" loading="lazy">
-        </div>
-
       </div>
 
-      <button class="colaj-btn colaj-prev" id="colajPrev" aria-label="Anterior">
-        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="colaj-btn colaj-next" id="colajNext" aria-label="Următor">
-        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
+      <div class="gcard reveal d2" onclick="openLightboxImage('colaj-4.jpg','Primavera')">
+        <div class="gcard-thumb">
+          <img src="colaj-4.jpg" alt="Primavera" loading="lazy">
+        </div>
+      </div>
 
-    <div class="colaj-dots" id="colajDots"></div>
+    </div>
   </div>
 </section>
 
@@ -2931,51 +2844,6 @@ document.querySelectorAll('.gcard').forEach(card => {
     }
   });
 });
-
-/* ═══════════════════════════════════════════════════════════
-   COLAJ CAROUSEL
-   ═══════════════════════════════════════════════════════════ */
-(function() {
-  const track = document.getElementById('colajTrack');
-  const dotsWrap = document.getElementById('colajDots');
-  const btnPrev = document.getElementById('colajPrev');
-  const btnNext = document.getElementById('colajNext');
-  if (!track) return;
-
-  const slides = Array.from(track.querySelectorAll('.colaj-slide'));
-  let current = 0;
-
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'colaj-dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(d);
-  });
-
-  function goTo(index) {
-    current = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dotsWrap.querySelectorAll('.colaj-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-  }
-
-  btnPrev.addEventListener('click', () => goTo(current - 1));
-  btnNext.addEventListener('click', () => goTo(current + 1));
-
-  let tx = 0;
-  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
-  }, { passive: true });
-
-  slides.forEach((slide, i) => {
-    slide.addEventListener('click', () => {
-      if (i !== current) return;
-      const img = slide.querySelector('img');
-      if (img) openLightboxImage(img.getAttribute('src'), img.alt);
-    });
-  });
-})();
 
 /* Close only when clicking the dimmed backdrop (not the media or its controls) */
 lightbox.addEventListener('click', (e) => {
