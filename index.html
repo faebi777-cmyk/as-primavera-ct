@@ -946,6 +946,10 @@ section {
   gap: 20px;
 }
 
+@media (min-width: 1024px) {
+  .colaj-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    SCHEDULE
    ═══════════════════════════════════════════════════════════════════ */
@@ -2304,15 +2308,22 @@ footer {
 
     <div class="colaj-grid">
 
-      <div class="gcard reveal d1" onclick="openLightboxImage('colaj-1.jpg','Primavera')">
+      <div class="gcard reveal d1">
         <div class="gcard-thumb">
           <img src="colaj-1.jpg" alt="Primavera" loading="lazy">
         </div>
       </div>
 
-      <div class="gcard reveal d2" onclick="openLightboxImage('colaj-4.jpg','Primavera')">
+      <div class="gcard reveal d2">
         <div class="gcard-thumb">
           <img src="colaj-4.jpg" alt="Primavera" loading="lazy">
+        </div>
+      </div>
+
+      <div class="gcard is-video reveal d3" data-video="colaj-video.mp4">
+        <div class="gcard-thumb">
+          <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
       </div>
 
