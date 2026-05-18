@@ -952,10 +952,45 @@ section {
 /* ═══════════════════════════════════════════════════════════════════
    COLAJ — photo grid
    ═══════════════════════════════════════════════════════════════════ */
+.colaj-category-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  color: var(--cream);
+  margin-bottom: 16px;
+  margin-top: 36px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.colaj-category-label:first-of-type { margin-top: 0; }
+
+.colaj-cat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.colaj-cat-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--green-500);
+}
+
 .colaj-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  margin-bottom: 8px;
 }
 
 @media (min-width: 1024px) {
@@ -2487,47 +2522,57 @@ footer {
       <p class="section-sub">Momente surprinse din antrenamente, meciuri și cantonamente.</p>
     </div>
 
-    <div class="colaj-grid">
+    <div class="colaj-category-label reveal">
+      <span class="colaj-cat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </span>
+      Poze
+    </div>
 
+    <div class="colaj-grid">
       <div class="gcard reveal d1">
         <div class="gcard-thumb">
           <img src="colaj-1.jpg" alt="Primavera" loading="lazy">
         </div>
       </div>
-
       <div class="gcard reveal d2">
         <div class="gcard-thumb">
           <img src="colaj-4.jpg" alt="Primavera" loading="lazy">
         </div>
       </div>
-
-      <div class="gcard is-video reveal d3" data-video="colaj-video.mp4">
-        <div class="gcard-thumb">
-          <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
-          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-      </div>
-
-      <div class="gcard is-video reveal d4" data-video="colaj-video-2.mp4">
-        <div class="gcard-thumb">
-          <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
-          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-      </div>
-
-      <div class="gcard reveal d1">
+      <div class="gcard reveal d3">
         <div class="gcard-thumb">
           <img src="colaj-5.jpg" alt="Primavera" loading="lazy">
         </div>
       </div>
+    </div>
 
-      <div class="gcard is-video reveal d2" data-video="colaj-video-3.mp4">
+    <div class="colaj-category-label reveal">
+      <span class="colaj-cat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      </span>
+      Filmări
+    </div>
+
+    <div class="colaj-grid">
+      <div class="gcard is-video reveal d1" data-video="colaj-video.mp4">
         <div class="gcard-thumb">
           <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
           <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
       </div>
-
+      <div class="gcard is-video reveal d2" data-video="colaj-video-2.mp4">
+        <div class="gcard-thumb">
+          <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </div>
+      <div class="gcard is-video reveal d3" data-video="colaj-video-3.mp4">
+        <div class="gcard-thumb">
+          <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
