@@ -2035,12 +2035,22 @@ footer {
    DESKTOP ≥ 1024px
    ═══════════════════════════════════════════════════════════════════ */
 @media (min-width: 1024px) {
-  .navbar { padding: 0 40px; height: 72px; }
+  .navbar { padding: 0 24px; height: 72px; }
 
   .nav-brand img { height: 44px; }
   .nav-brand-text strong { font-size: 1.18rem; }
 
-  .nav-links { display: flex; }
+  .nav-links {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 20px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { font-size: 0.75rem; white-space: nowrap; }
   .hamburger { display: none; }
 
   .hero { padding-top: 72px; }
@@ -2217,8 +2227,8 @@ footer {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         PRIMELE 2 ANTRENAMENTE GRATUITE
       </a>
-      <a href="#categorii" class="btn btn-ghost">
-        Vezi Categoriile →
+      <a href="#competitii" class="btn btn-ghost">
+        Vezi Programul Competițional →
       </a>
     </div>
 
@@ -2503,6 +2513,13 @@ footer {
         </div>
       </div>
 
+      <div class="gcard is-video reveal d2" data-video="colaj-video-3.mp4">
+        <div class="gcard-thumb">
+          <img src="logo.png" alt="AS Primavera Constanța — logo club" loading="lazy">
+          <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -2514,33 +2531,18 @@ footer {
   <div class="section-inner">
     <div class="section-header reveal">
       <span class="section-label">Săptămâna Aceasta</span>
-      <h2 class="section-title">Competiții <span class="accent">Județene</span></h2>
-      <p class="section-sub">Programul meciurilor și antrenamentelor pentru această săptămână.</p>
+      <h2 class="section-title">Program <span class="accent">Competițional</span></h2>
+      <p class="section-sub">Meciurile din această săptămână — grupă, adversar, teren și oră.</p>
     </div>
 
     <div class="match-grid reveal">
-
-      <div class="match-card is-training">
-        <div class="match-day-badge">
-          <span class="match-day-name">LUN</span>
-        </div>
-        <div class="match-body">
-          <div class="match-type">Antrenament</div>
-          <div class="match-title">Grupa Mare</div>
-          <div class="match-location">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            Teren Arena Palas
-          </div>
-        </div>
-        <div class="match-time">18:30<br><span style="font-size:0.75rem;color:var(--stone-400)">19:30</span></div>
-      </div>
 
       <div class="match-card">
         <div class="match-day-badge">
           <span class="match-day-name">MAR</span>
         </div>
         <div class="match-body">
-          <div class="match-type">Meci · 2014–15</div>
+          <div class="match-type">Grupa 2014–2015</div>
           <div class="match-title">Primavera vs Adversar</div>
           <div class="match-location">
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -2555,7 +2557,7 @@ footer {
           <span class="match-day-name">MIE</span>
         </div>
         <div class="match-body">
-          <div class="match-type">Meci · 2016–17</div>
+          <div class="match-type">Grupa 2016–2017</div>
           <div class="match-title">Primavera vs Constructorul</div>
           <div class="match-location">
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -2570,7 +2572,7 @@ footer {
           <span class="match-day-name">JOI</span>
         </div>
         <div class="match-body">
-          <div class="match-type">Meci · 2016–17</div>
+          <div class="match-type">Grupa 2016–2017</div>
           <div class="match-title">Primavera vs Andaluzia</div>
           <div class="match-location">
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -2578,21 +2580,6 @@ footer {
           </div>
         </div>
         <div class="match-time">16:30<br><span style="font-size:0.75rem;color:var(--stone-400)">17:30</span></div>
-      </div>
-
-      <div class="match-card is-training">
-        <div class="match-day-badge">
-          <span class="match-day-name">VIN</span>
-        </div>
-        <div class="match-body">
-          <div class="match-type">Antrenament</div>
-          <div class="match-title">Grupa Mare</div>
-          <div class="match-location">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            Teren Arena Palas
-          </div>
-        </div>
-        <div class="match-time">17:00<br><span style="font-size:0.75rem;color:var(--stone-400)">18:00</span></div>
       </div>
 
     </div>
@@ -2607,90 +2594,54 @@ footer {
     <div class="section-header reveal">
       <span class="section-label">Orar Antrenamente</span>
       <h2 class="section-title">Program <span class="accent">Săptămânal</span></h2>
-      <p class="section-sub section-sub-lg">Antrenamente și meciuri pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, Constanța.</p>
+      <p class="section-sub section-sub-lg">Ne antrenăm 4 zile pe săptămână pe Terenul Sintetic Arena Palas, Strada Crișului nr. 20, Constanța, într-un program stabil și ușor de urmărit pentru părinți.</p>
     </div>
 
-    <div class="group-tabs reveal">
-      <button class="group-tab active" onclick="switchGroup('mare', this)">Grupa Mare</button>
-      <button class="group-tab" onclick="switchGroup('mica', this)">Grupa Mică</button>
-    </div>
-
-    <!-- GRUPA MARE -->
-    <div class="group-panel active" id="panel-mare">
-      <div class="sched-grid">
-        <div class="sched-card reveal d1">
-          <div class="sched-left">
-            <div class="sched-badge">L</div>
-            <div class="sched-meta">
-              <div class="sched-day">Luni</div>
-              <div class="sched-sub">Antrenament</div>
-            </div>
+    <div class="sched-grid">
+      <div class="sched-card reveal d1">
+        <div class="sched-left">
+          <div class="sched-badge">01</div>
+          <div class="sched-meta">
+            <div class="sched-day">Luni</div>
+            <div class="sched-sub">2 ore</div>
           </div>
-          <div class="sched-time">18:30–19:30</div>
         </div>
+        <div class="sched-time">17:30–19:30</div>
+      </div>
 
-        <div class="sched-card reveal d2">
-          <div class="sched-left">
-            <div class="sched-badge">Ma</div>
-            <div class="sched-meta">
-              <div class="sched-day">Marți</div>
-              <div class="sched-sub">Meci · 2014–15</div>
-            </div>
+      <div class="sched-card reveal d2">
+        <div class="sched-left">
+          <div class="sched-badge">02</div>
+          <div class="sched-meta">
+            <div class="sched-day">Marți</div>
+            <div class="sched-sub">1 oră</div>
           </div>
-          <div class="sched-time">17:00–18:00</div>
         </div>
+        <div class="sched-time">17:00–18:00</div>
+      </div>
 
-        <div class="sched-card reveal d3">
-          <div class="sched-left">
-            <div class="sched-badge">J</div>
-            <div class="sched-meta">
-              <div class="sched-day">Joi</div>
-              <div class="sched-sub">Meci · 2016–17</div>
-            </div>
+      <div class="sched-card reveal d3">
+        <div class="sched-left">
+          <div class="sched-badge">03</div>
+          <div class="sched-meta">
+            <div class="sched-day">Joi</div>
+            <div class="sched-sub">1 oră</div>
           </div>
-          <div class="sched-time">16:30–17:30</div>
         </div>
+        <div class="sched-time">16:30–17:30</div>
+      </div>
 
-        <div class="sched-card reveal d4">
-          <div class="sched-left">
-            <div class="sched-badge">V</div>
-            <div class="sched-meta">
-              <div class="sched-day">Vineri</div>
-              <div class="sched-sub">Antrenament</div>
-            </div>
+      <div class="sched-card reveal d4">
+        <div class="sched-left">
+          <div class="sched-badge">04</div>
+          <div class="sched-meta">
+            <div class="sched-day">Vineri</div>
+            <div class="sched-sub">1 oră</div>
           </div>
-          <div class="sched-time">17:00–18:00</div>
         </div>
+        <div class="sched-time">17:00–18:00</div>
       </div>
     </div>
-
-    <!-- GRUPA MICĂ -->
-    <div class="group-panel" id="panel-mica">
-      <div class="sched-grid">
-        <div class="sched-card reveal d1">
-          <div class="sched-left">
-            <div class="sched-badge">L</div>
-            <div class="sched-meta">
-              <div class="sched-day">Luni</div>
-              <div class="sched-sub">Antrenament</div>
-            </div>
-          </div>
-          <div class="sched-time">17:30–18:30</div>
-        </div>
-
-        <div class="sched-card reveal d2">
-          <div class="sched-left">
-            <div class="sched-badge">J</div>
-            <div class="sched-meta">
-              <div class="sched-day">Joi</div>
-              <div class="sched-sub">Meci · Primavera – Andaluzia</div>
-            </div>
-          </div>
-          <div class="sched-time">16:30–17:30</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
