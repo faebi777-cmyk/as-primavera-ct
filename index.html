@@ -2276,16 +2276,6 @@ footer {
   </div>
 </div>
 
-<div class="summer-popup-overlay" id="summerPopup" role="dialog" aria-modal="true" aria-labelledby="summerPopupTitle" aria-describedby="summerPopupText" aria-hidden="true">
-  <div class="summer-popup-card">
-    <div class="summer-popup-badge" aria-hidden="true">☀️⚽🌞</div>
-    <h2 class="summer-popup-title" id="summerPopupTitle">Fotbaliștii AS Primavera CT sunt în vacanță de vară!</h2>
-    <p class="summer-popup-text" id="summerPopupText">Soare, odihnă și multe emoții de pe teren — revenim cu energie nouă în sezonul următor.</p>
-    <div class="summer-popup-emoji" aria-hidden="true">☀️⚽</div>
-    <p class="summer-popup-hint">Apasă oriunde pe ecran pentru a intra pe site</p>
-  </div>
-</div>
-
 <!-- ═══════════════════════════════════════════════════════════
      NAVBAR
      ═══════════════════════════════════════════════════════════ -->
@@ -3056,7 +3046,6 @@ const drawerLinks = document.querySelectorAll('.drawer-link');
 const pageLoader = document.getElementById('pageLoader');
 const loaderProgressBar = document.getElementById('loaderProgressBar');
 const loaderMeta = document.getElementById('loaderMeta');
-const summerPopup = document.getElementById('summerPopup');
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
 const cookieReject = document.getElementById('cookieReject');
@@ -3087,18 +3076,6 @@ const loaderTimer = window.setInterval(() => {
   loaderProgressBar.style.width = loaderValue.toFixed(0) + '%';
 }, 120);
 
-function showSummerPopup() {
-  if (!summerPopup) return;
-  summerPopup.classList.add('open');
-  summerPopup.setAttribute('aria-hidden', 'false');
-}
-
-function closeSummerPopup() {
-  if (!summerPopup) return;
-  summerPopup.classList.remove('open');
-  summerPopup.setAttribute('aria-hidden', 'true');
-}
-
 function finishLoadingExperience() {
   clearInterval(loaderTimer);
   loaderProgressBar.style.width = '100%';
@@ -3106,16 +3083,8 @@ function finishLoadingExperience() {
   window.setTimeout(() => {
     pageLoader.classList.add('hidden');
     document.body.classList.remove('site-loading');
-    window.setTimeout(showSummerPopup, 220);
   }, 320);
 }
-
-summerPopup.addEventListener('click', closeSummerPopup);
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && summerPopup.classList.contains('open')) {
-    closeSummerPopup();
-  }
-});
 
 /* ═══════════════════════════════════════════════════════════
    LEGAL MODAL + COOKIES
